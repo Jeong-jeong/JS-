@@ -6,18 +6,23 @@
     <body>
         <script>
             function odd (arr) {
-                let sum = 0;
-                let answer = arr.filter( (item) => item % 2 );
-                answer.forEach( (item) => sum += item );
-                
-                console.log(sum); 
-                console.log(Math.min(...answer));
-                            
+                let answer = [];
+                let sum = 0, min = Number.MAX_SAFE_INTEGER;
+                for (let n of arr) {
+                    if ( n % 2 ) {
+                        sum += n;
+                        if ( n < min ) min = n;
+                    }
+                }
+
+                answer.push(sum);
+                answer.push(min);
+
                 return answer;
             }
             
             arr=[12, 77, 38, 41, 53, 92, 85];
-            odd(arr);
+            console.log(odd(arr));
         </script>
     </body>
 </html>
