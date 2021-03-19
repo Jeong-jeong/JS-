@@ -1,0 +1,22 @@
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>출력결과</title>
+    </head>
+    <body>
+        <script>
+            // 여러 개 숫자 중 최솟값 찾기
+            function min (arr) {
+                let answer, minimum = arr[0];
+                for (let i = 0; i < arr.length; i++) {
+                    if ( arr[i] < minimum ) minimum = arr[i];
+                    answer = minimum;
+                }
+                
+                return answer;
+            }
+            let arr = [5, 3, 7, 11, 2, 15, 17];
+            console.log(min(arr));
+        </script>
+    </body>
+</html>
