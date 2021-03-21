@@ -5,24 +5,23 @@
     </head>
     <body>
         <script>
-            // 진짜 일곱 난쟁이의 키의 합 === 100
-            // 아홉 난쟁이 키의 합 - x = 100
-            // x를 splice로 arr에서 제거
+            // 일곱 난쟁이 키의 합 = 100
+            // 아홉 난쟁이 키의 합 (sum) = 140
             function solution (arr) {
                 let answer = arr;
-                let sum = arr.reduce( (a, b) => a + b, 0 );
-                console.log(arr) // 140
-                for (let i = 0; i < arr.length; i++) {
-                    for (let j = 1; j < arr.length; j++) {
+                let sum = 0;
+                arr.forEach( (item) => sum += item  )
+                for (let i = 0; i < arr.length -1; i++) {
+                    for (let j = i +1; j < arr.length; j++) {
                         if (sum - (arr[i] + arr[j]) === 100) {
-                            arr.splice( j, 1 ); //뒤에 j 먼저 지우면 i 인덱스가 앞으로 안 당겨짐
-                            arr.splice( i, 1 ); 
+                            arr.splice( j, 1 ); // index = 6
+                            arr.splice( i, 1 ); // index = 5
                         }
                     }
                 }
-
                 return answer;
             }
+            
             
             let arr=[20, 7, 23, 19, 10, 15, 25, 8, 13]; // 아홉 난쟁이
             console.log( solution (arr));
