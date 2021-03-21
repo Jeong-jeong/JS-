@@ -1,0 +1,43 @@
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>출력결과</title>
+    </head>
+    <body>
+        <script>
+            // 문자열에서 특정 문자 갯수 찾기
+            // 내 답안
+            function solution (str, c) {
+                let answer = 0;
+                    for (item of str) {
+                        (item === c) && answer++;
+                    }
+                return answer;
+            }
+            
+            let str="COMPUTERPROGRAMMING";
+            console.log(solution(str, 'R'));
+        </script>
+    </body>
+</html>
+
+
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>출력결과</title>
+    </head>
+    <body>
+        <script>
+            function solution (s, c) {
+                let answer = (s.split(c)).length - 1; // c를 구분자로 배열 만듦.
+                // 결과: ['COMPUTE', 'P', 'OG', 'AMMING'] (4)
+                // c(R)가 3개로 나눴으니까 결과물은 4개. 
+                return answer;
+            }
+            
+            let str2="COMPUTERPROGRAMMING";
+            console.log(solution(str2, 'R'));
+        </script>
+    </body>
+</html>
