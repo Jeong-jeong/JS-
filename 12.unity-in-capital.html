@@ -1,0 +1,51 @@
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>출력결과</title>
+    </head>
+    <body>
+        <script>
+            // 대문자로 통일
+            function solution (s) {
+                let answer = '';
+                    for (let item of s) {
+                    if (item === item.toUpperCase()) answer += item;
+                    else answer += item.toUpperCase();
+                    }
+                return answer;
+            }
+
+            let str="ItisTimeToStudy";
+            console.log(solution(str));
+
+        </script>
+    </body>
+</html>
+
+
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>출력결과</title>
+    </head>
+    <body>
+        <script>
+            // 대문자로 통일
+            // 아스키넘버 대문자(65 ~ 90 = 26개, 소문자(97 ~ 122 = 26개))
+            // ⭐️ 소문자와 대문자는 아스키 넘버로 각각 32가 차이남
+            function solution (s) {
+                let answer = '';
+                    for (let item of s) {
+                        let ascii = item.charCodeAt();
+                        if (65 <= ascii && ascii <= 90) answer += item;
+                        else answer += String.fromCharCode(ascii-32)
+                    }
+                return answer;
+            }
+
+            let str2="ItisTimeToStudy";
+            console.log(solution(str2));
+
+        </script>
+    </body>
+</html>
