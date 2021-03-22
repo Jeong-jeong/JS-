@@ -7,9 +7,9 @@
         <script>
             // 문자열에서 특정 문자 갯수 찾기
             // 내 답안
-            function solution (str, c) {
+            function solution (s, c) {
                 let answer = 0;
-                    for (item of str) {
+                    for (let item of s) {
                         (item === c) && answer++;
                     }
                 return answer;
@@ -29,15 +29,13 @@
     </head>
     <body>
         <script>
-            function solution (s, c) {
-                let answer = (s.split(c)).length - 1; // c를 구분자로 배열 만듦.
-                // 결과: ['COMPUTE', 'P', 'OG', 'AMMING'] (4)
-                // c(R)가 3개로 나눴으니까 결과물은 4개. 
-                return answer;
-            }
+           function solution2 (s, c) {
+               let answer = s.split(c).length - 1;
+               return answer;
+           }
             
             let str2="COMPUTERPROGRAMMING";
-            console.log(solution(str2, 'R'));
+            console.log(solution2(str2, 'R'));
         </script>
     </body>
 </html>
