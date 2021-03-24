@@ -1,0 +1,22 @@
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>출력결과</title>
+    </head>
+    <body>
+        <script>
+            // 중복 단어 제거
+            function solution ( s ) {
+                let answer = [];
+                for (let i = 0; i < s.length; i++) {
+                    let dup = s.indexOf(s[i])
+                    console.log(s[i], i , dup)
+                    if (i === dup) answer.push(s[i])
+                }
+                return answer;
+            }
+            let str=["good", "time", "good", "time", "student"];
+            console.log(solution(str));
+        </script>
+    </body>
+</html>
