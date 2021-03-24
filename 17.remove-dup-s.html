@@ -7,12 +7,9 @@
         <script>
             // 중복 단어 제거
             function solution ( s ) {
-                let answer = [];
-                for (let i = 0; i < s.length; i++) {
-                    let dup = s.indexOf(s[i])
-                    console.log(s[i], i , dup)
-                    if (i === dup) answer.push(s[i])
-                }
+                let answer;
+                answer = s.filter ( 
+                    (item, idx) => s.indexOf(item) === idx)
                 return answer;
             }
             let str=["good", "time", "good", "time", "student"];
