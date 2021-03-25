@@ -1,0 +1,21 @@
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>출력결과</title>
+    </head>
+    <body>
+        <script>
+           // 중복 문자 제거
+           function solution ( s ) {
+            let answer = '';
+            for (let i = 0; i < s.length; i++) {
+                let dupIdx = s.indexOf(s[i]);
+                console.log(s[i], i, dupIdx)
+                if (dupIdx === i) answer += s[i];
+            }
+            return answer;
+           }
+            console.log(solution("ksekkset"));
+        </script>
+    </body>
+</html>

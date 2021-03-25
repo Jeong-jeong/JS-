@@ -1,0 +1,44 @@
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>출력결과</title>
+    </head>
+    <body>
+        <script>
+            // 입력된 단어에 포함된 'A'를 모두 '#'으로 바꾸기
+            function solution (str) {
+                let answer = '';
+                for (let item of str) { // 문자열도 for of 사용 가능
+                    if ( item === 'A') answer += '#';
+                    else answer += item;
+                }
+                return answer;
+            }
+            let str = 'BANANA';
+            console.log(solution(str));
+        </script>
+    </body>
+</html>
+
+
+
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>출력결과</title>
+    </head>
+    <body>
+        <script>
+            // 정규표현식 (문자열에 포함된 문자조합을 찾기 위해 사용)
+            // replace 사용
+            function solution (s) {
+                let answer = s; // 문자열은 값이 복사됨. 참조 X
+                    answer = answer.replace(/A/g, '#');
+                return answer;
+            }
+
+            let str2 = 'BANANA';
+            console.log(solution(str2));
+        </script>
+    </body>
+</html>

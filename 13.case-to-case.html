@@ -1,0 +1,47 @@
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>출력결과</title>
+    </head>
+    <body>
+        <script>
+            // 대문자는 소문자로, 소문자는 대문자로 변환
+            function solution (s) {
+                let answer = '';
+                    for (let item of s) {
+                        if (item === item.toUpperCase()) answer += item.toLowerCase();
+                        else answer += item.toUpperCase();
+                    }
+                return answer;
+            }
+
+            console.log(solution("StuDY"));
+        </script>
+    </body>
+</html>
+
+
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>출력결과</title>
+    </head>
+    <body>
+        <script>
+            // 아스키 코드로
+            function solution (s) {
+                let answer = '';
+                    for (let item of s) {
+                        let ascii = item.charCodeAt();
+                        // 대문자일 때
+                        if (65 <= ascii && ascii <= 90) answer += String.fromCharCode(ascii + 32);
+                        // 소문자일 때
+                        else answer += String.fromCharCode(ascii - 32);
+                    }
+                return answer;
+            }
+
+            console.log(solution("StuDY"));
+        </script>
+    </body>
+</html>
