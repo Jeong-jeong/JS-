@@ -1,0 +1,25 @@
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>출력결과</title>
+    </head>
+    <body>
+        <script>
+            // 일차원배열 탐색
+            function solution (arr) {
+                let answer = arr;
+                // push로 추가하는게 아니라 기존 배열 복사 후 조건이 아닐 경우 삭제.
+                for (let i = 0; i < answer.length; i++) {
+                    if (answer[i] > answer[i+1]) {
+                        answer.splice(i+1, 1);
+                    }
+                }
+                
+                return answer;
+            }
+
+            let arr=[7, 3, 9, 5, 6, 12];
+            console.log(solution(arr));
+        </script>
+    </body>
+</html>
