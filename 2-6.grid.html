@@ -6,26 +6,27 @@
     <body>
         <script>
             function solution (arr) {
-                let answer = Number.MIN_SAFE_INTEGER;
+                let answer = [];
                 let n = arr.length;
-                let sum1 = sum2 = 0;
                 for (let i = 0; i < n; i++) {
-                    sum1 = sum2 = 0;
+                    let r = c = d = 0;
                     for (let j = 0; j < n; j++) {
-                        sum1 += arr[i][j]; // 행
-                        sum2 += arr[j][i];
+                        r += arr[i][j];
+                        c += arr[j][i];
+                        d += arr[j][j];
+                        
                     }
-                    answer = Math.max(answer, sum1, sum2)
+                    answer.push(r, c, d);
                 }
-                sum1 = sum2 = 0;
+                let r = c = d = 0;
+
                 for (let i = 0; i < n; i++) {
-                    sum1 += arr[i][i];
-                    sum2 += arr[i][n - i - 1];
-                    answer = Math.max(answer, sum1, sum2)
+                    d += arr[i][n - i - 1];
                 }
+                console.log(answer)
                 
-                
-                return answer;
+
+                return Math.max(...answer);
             }
 
             let arr=[[10, 13, 10, 12, 15], 
