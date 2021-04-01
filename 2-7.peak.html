@@ -5,26 +5,26 @@
     </head>
     <body>
         <script>
-           function solution (arr) {
-                let answer = 0;
-                let n = arr.length;
-                let row = [-1, 0, 1 ,0];
-                let col = [0, 1, 0, -1];
-
-                for (let i = 0; i < n; i++) {
-                    for (let j = 0; j< n; j++) {
-                        let flag = 1;
-                        for (let k = 0; k < n -1; k++) {
-                            let nx = i + row[k];
-                            let ny = j + col[k];
-                            if (nx >= 0 && nx < n && ny >= 0 && ny < n && arr[nx][ny] >= arr[i][j]) {
+           function solution () {
+               let answer = 0;
+               let n = arr.length;
+               let row = [-1, 0, 1, 0]
+               let col = [0, 1, 0, -1]
+               
+               for (let i = 0; i < n; i++) {
+                   for (let j = 0; j < n; j++) {
+                       let flag = 1;
+                       for (let k = 0; k <= n-1; k++) {
+                           let nx = i + row[k];
+                           let ny = j + col[k];
+                           if ((nx >= 0 && nx < n) && (ny >= 0 && ny < n) && arr[nx][ny] >= arr[i][j]) {
                                 flag = 0;
                                 break;
-                            };
-                        }
-                        flag && answer++; 
-                    }
-                }
+                           }
+                       } if (flag) answer++;
+                   }
+               }
+                
                return answer;
            }
 
