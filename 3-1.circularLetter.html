@@ -7,18 +7,9 @@
         <script>
             function solution (str) {
                 let s = str.toLowerCase();
-                let answer = 'YES';
-                let n = s.length;
-                    for (let i = 0; i < Math.floor(n / 2); i++) {
-                        if (s[i] !== s[n - 1 + i]) {
-                            return 'NO';
-                            break;
-                        }
-                        return answer;
-                    }
+                let arr = s.split('').reverse().join('');
+                return (s === arr) ? 'YES' : 'NO'
             }
-            
-            
             
             let str="gooG";
             console.log(solution(str));
