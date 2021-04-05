@@ -6,11 +6,11 @@
     <body>
         <script>
             function solution (str) {
-                let answer = '';
+                let answer = 0;
                 for (let item of str) {
-                    if (!isNaN(item)) answer += item;
+                    if (!isNaN(item)) answer = answer * 10 + Number(item);
                 }
-                return parseInt(answer);
+                return answer;
             }
             
             let str="g000en2T0s8eSoft";
