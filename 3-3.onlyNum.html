@@ -7,7 +7,7 @@
         <script>
             function solution (str) {
                 let answer = 0;
-                for (let item of str) {
+                for (item of str) {
                     if (!isNaN(item)) answer = answer * 10 + Number(item);
                 }
                 return answer;
