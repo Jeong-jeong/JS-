@@ -5,22 +5,22 @@
     </head>
     <body>
         <script>
-           function solution (s, t) {
-               let answer = [];
-               let p = 1000; // 큰 숫자를 일단 넣음.
-                for (item of s) {
-                    // 자기자신과 왼쪽에 'e'와의 거리를 비교
-                    (item === t) ? p = 0 : p++;
+            function solution (s, t) {
+                let answer = [];
+                let n = str.length;
+                let p = 1000; 
+                for (let i = 0; i < n; i++) {
+                    (str[i] !== t) ? p++ : p = 0;
                     answer.push(p);
                 }
                 p = 1000;
-                for (let i = s.length - 1; i >= 0; i-- ) {
-                    // 자기자신과 오른쪽에 'e'와의 거리를 비교
-                    (s[i] === t) ? p = 0 : p++;
-                    (p > answer[i]) ? answer[i] : answer[i] = p
+                for (let i = n -1; i >= 0; i--) {
+                    (str[i] !== t) ? p++ : p = 0;
+                    if (answer[i] > p) answer[i] = p;
                 }
-            return answer;
+                return answer;
             }
+            
             
             let str="teachermode";
             console.log(solution(str, 'e'));
