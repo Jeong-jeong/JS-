@@ -1,0 +1,36 @@
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>출력결과</title>
+    </head>
+    <body>
+        <script>
+            function solution (n, arr) {
+                let answer, max = Number.MIN_SAFE_INTEGER;
+                for (let item of arr) {
+                    let sum = 0, quo = item;
+                    while (quo) { // 몫이 0이되면 다음 item으로 넘어감
+                        sum += (quo % 10); // 나머지를 sum에 누적
+                        quo = Math.floor(quo / 10); // 몫을 10의 자리씩 줄임
+                    }
+                    if (sum > max) {
+                        max = sum;
+                        answer = item;
+                    } else if (sum === max) {
+                        if (item > answer) answer = item;
+                    }
+                }
+                return answer;
+            }
+            
+            
+            let arr=[128, 460, 603, 40, 521, 137, 123];
+            // 11, 10, 9, 4, 8, 11, 6
+            // 같을 경우 원래 숫자가 큰거
+            console.log(solution(7, arr));
+        </script>
+    </body>
+</html>
+
+
+
