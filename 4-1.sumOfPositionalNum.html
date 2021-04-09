@@ -5,18 +5,22 @@
     </head>
     <body>
         <script>
-            function solution (n, arr) {
-                let answer, max = Number.MIN_SAFE_INTEGER;
-                for (let item of arr) {
-                    let sum = item.toString().split('').
-                    reduce( (a, b) => a + Number(b), 0);
-                    console.log(sum)
-                    
-                    if (sum > max) {
-                        max = sum;
-                        answer = item;
-                    } else if (sum === max) {
-                        if (item > answer) answer = item;
+            function solution (arr) {
+                let answer = 0, max = Number.MIN_SAFE_INTEGER;
+                // max를 반복문안에 넣으면 다시 가장 작은 수가 되기 때문에
+                // 반복문 바깥에 넣어서 max의 최댓값이 유지되도록 하기
+                for (let num of arr) {
+                    let sum = 0;
+                    let dup = num;
+                    while (dup) {
+                        sum += dup % 10; // 나머지 축적
+                        dup = Math.floor(dup / 10); // 몫 줄이기
+                        if (sum > max) {
+                            max = sum;
+                            answer = num;
+                        } else if (sum === max) {
+                            if (num > answer) answer = num;
+                        }
                     }
                 }
                 return answer;
@@ -26,7 +30,7 @@
             let arr=[128, 460, 603, 40, 521, 137, 123];
             // 11, 10, 9, 4, 8, 11, 6
             // 같을 경우 원래 숫자가 큰거
-            console.log(solution(7, arr));
+            console.log(solution(arr));
         </script>
     </body>
 </html>
