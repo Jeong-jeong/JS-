@@ -1,0 +1,44 @@
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>출력결과</title>
+    </head>
+    <body>
+        <script>
+            function solution (arr) {
+                let answer = [];
+                for (let num of arr) {
+                    let reverse = String(num).split('').reverse().join('');
+                    isPrime(+reverse) && answer.push(+reverse);
+                }
+                return answer;
+            }
+
+            function isPrime (n) {
+                // 1 이하일 경우 소수가 아님.
+                if (n <= 1) return false;
+                // 2, 3 은 소수
+                if (n === 2 || n ===3) return true;
+                // 짝수는 소수가 아님
+                if (n % 2 === 0) return false;
+
+                let divisor = 3;
+                
+                while (n > divisor) {
+                    if (n % divisor === 0) return false;
+                    // 3의 배수이면 소수가 아님
+
+                    divisor += 2; // 홀수일 경우
+                }
+                // 모든 조건 통과시 소수!
+                return true; 
+            }
+            
+            let arr=[32, 55, 62, 20, 250, 370, 200, 30, 100];
+            console.log(solution (arr));
+        </script>
+    </body>
+</html>
+
+
+
