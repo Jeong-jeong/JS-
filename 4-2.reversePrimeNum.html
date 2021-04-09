@@ -6,10 +6,17 @@
     <body>
         <script>
             function solution (arr) {
+                // Math.floor를 제외한 내장함수 없이 풀어보기
                 let answer = [];
-                for (let num of arr) {
-                    let reverse = String(num).split('').reverse().join('');
-                    isPrime(+reverse) && answer.push(+reverse);
+                for (num of arr) {
+                    let quo = num;
+                    let reverse = '';
+                    while (quo) { // 32
+                        rem = quo % 10; 
+                        quo = Math.floor(quo / 10);
+                        reverse += rem;
+                    }
+                    isPrime(+reverse) && answer.push(+reverse)
                 }
                 return answer;
             }
