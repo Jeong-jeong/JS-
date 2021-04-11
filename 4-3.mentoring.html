@@ -5,33 +5,30 @@
     </head>
     <body>
         <script>
-            function solution(test){
-                let answer = 0, tmp = [];
-                m = test.length; // 3 (테스트 횟수)
-                n = test[0].length; // 4 (학생 수)
+            function solution (arr) {
+                let answer = 0, pair = [];
+                let n = arr[0].length; // 4
+                let m = arr.length; // 3
+                // 4명의 학생이 멘토, 멘티 짝이 되는 경우의 수(4 * 4)
                 for (let i = 1; i <= n; i++) { // i = 멘토
                     for (let j = 1; j <= n; j++) { // j = 멘티
 
                         let cnt = 0;
-                        
-                    for (let k = 0; k < m; k++) { // k번째 테스트
-                            let pi = pj = 0; // 등수 초기화
-                            for (let s = 0; s < n; s++) { // s 위치
-                                if (test[k][s] === i) pi = s;
-                                // k번째 테스트에 s 위치에 i번째 학생이 있음?
-                                // 있다면 pi(등수) = s가 됨.
-                                // 등수가 앞에 있을 수록(낮을 수록) 높은 것
-                                if (test[k][s] === j) pj = s;
+
+                        for (let k = 0; k < m; k++) { // k = 테스트 횟수
+                            let pi = pj = 0; // 멘토(pi), 멘티(pj) 등수
+                            for (let s = 0; s < n; s++) { // s = 등수
+                                if (arr[k][s] === i) pi = s;
+                                if (arr[k][s] === j) pj = s;
                             }
-                            if (pi < pj) cnt++;
+                            if (pi < pj) {
+                                cnt++;
+                                console.log(i, j)
+                            }
                         }
-                        if (cnt === m) {
-                            tmp.push([i, j]);
-                            answer++;
-                        };
+                        (cnt === m) && answer++;
                     }
                 }
-                console.log(tmp)
                 return answer;
             }
             
