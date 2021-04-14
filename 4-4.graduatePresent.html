@@ -5,29 +5,36 @@
     </head>
     <body>
         <script>
-            function solution (budget, product) {
+            function solution (budget, array) {
                 let answer = 0;
-                let n = product.length;
-                product.sort( (a, b) => a[0] + a[1] - (b[0] + b[1]) );
-                for (let i = 0; i < n; i++) {
-                    let money = budget - (product[i][0] / 2 + product[i][1]);
-                    let cnt = 1;
-                    for (let j = 0; j < n; j++) {
-                        if (j !== i && product[j][0] + product[j][1] > money) break;
-                        if (j !== i && product[j][0] + product[j][1] <= money) {
-                            money -= (product[j][0] + product[j][1]);
-                            cnt++;
-                        };
-                    }
-                    answer = Math.max(answer, cnt);
-                } 
+                let n = array.length;
+                array.sort( (a, b) => (a[0] + a[1] - (b[0] + b[1])) )
                 
 
-                return answer;
+            for (let i = 0; i < n; i++) {
+                let remainder = budget - (array[i][0] / 2 + array[i][1]);
+                // 우선 할인된 합계를 예산에서 제외 (먼저 삼)
+                let cnt = 1; // 샀으니까 1 올림
+                for (let j = 0; j < n; j++) { // 다시 0부터 돌아가며 탐색
+                    if (j !== i && (array[j][0] + array[j][1]) > remainder) break;
+                    // j가 i 빼고 구입할 때 만약 살 물건(합계)이 남은 예산보다 비싸다면 
+                    // 더 돌지말고 break;
+                    // ex) 살 물건이 5고 남은 예산이 3일 땐 탐색을 종료함
+                    if (j !== i && (array[j][0] + array[j][1]) <= remainder) {
+                        // i는 이미 샀으니까 j는 i탐색을 제외해야 함
+                        // 합계(살 물건)는 남은 예산보다 작을 때
+                        remainder -= (array[j][0] + array[j][1]);
+                        // 그 물건을 삼.
+                        cnt++;
+                        // 샀다고 1 올려주기
+                    }
+                }
+                answer = Math.max(answer, cnt);
             }
-            
-            let arr=[[6, 6], [2, 2], [4, 3], [4, 5], [10, 3]];
-            console.log(solution(28, arr));
+            return answer;
+        }
+        let arr=[[6, 6], [2, 2], [4, 3], [4, 5], [10, 3]];
+        console.log(solution(28, arr));
         </script>
     </body>
 </html>
