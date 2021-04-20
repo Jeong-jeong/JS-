@@ -6,24 +6,15 @@
     <body>
         <script>
             function solution (m, arr) {
-                let answer = sum = 0;
-                let p1 = 0, p2 = p1 + 1;
-
-                
-                while (p1 < arr.length) {
-                    if (arr[p1] <= m && sum <= m) {
-                        answer++;
-                        sum = arr[p1] + arr[p2];
-                        while (sum <= m) {
-                            answer++;
-                            sum += arr[++p2];
-                        }
-                    } else {
-                        p1++;
-                        p2 = p1 + 1;
-                        sum = 0;
-                    }
+                let answer = 0, lt = rt = 0, sum = 0;
+                sum = arr[lt];
+                while (sum <= m) {
+                    answer++;
+                    sum += arr[++rt]
                 }
+                lt++;
+                rt = lt + 1;
+
                 return answer;
             }
             
