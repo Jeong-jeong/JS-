@@ -1,0 +1,40 @@
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>출력결과</title>
+    </head>
+    <body>
+        <script>
+            function solution (s1, s2) {
+                let answer = 'NO';
+                
+                let sH = new Map();
+                let sH2 = new Map();
+                for (let item of s1) {
+                    sH.has(item) ? 
+                    sH.set(item, sH.get(item) + 1) : 
+                    sH.set(item, 1);
+                }
+                for (let item of s2) {
+                    sH2.has(item) ? 
+                    sH2.set(item, sH2.get(item) + 1) : 
+                    sH2.set(item, 1);
+                }
+                for (let [key, val] of sH) {
+                    (sH2.has(key)) && 
+                    (sH2.get(key) === val) ? 
+                    answer = 'YES' : 
+                    answer = 'NO'
+                }
+                    
+
+
+                return answer;
+            }
+            
+            let a="AbaAeCe";
+            let b="baeeACA";
+            console.log(solution(a, b));
+        </script>
+    </body>
+</html>
