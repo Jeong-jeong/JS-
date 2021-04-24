@@ -6,17 +6,21 @@
     <body>
         <script>
             function solution (s1, s2) {
-
-            if (arrange(s1) === arrange(s2)) return 'YES'
-            else return 'NO';
-
-                function arrange (str) {
-                    return Array.from(str).sort().join('');
+                let sH = new Map();
+                for (let item of s1) {
+                    (sH.has(item) ?
+                    sH.set(item, sH.get(item) + 1) :
+                    sH.set(item, 1)
+                )}
+                for (let item of s2) {
+                    if (!sH.has(item) || sH.get(item) === 0) return 'NO';
+                        sH.set(item, sH.get(item) - 1);
                 }
+                return 'YES';
             }
             
-            let a="AbaAeCe";
-            let b="baeeACA";
+            let a="abaCC";
+            let b="Caaab";
             console.log(solution(a, b));
         </script>
     </body>
