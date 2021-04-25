@@ -1,0 +1,41 @@
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>출력결과</title>
+    </head>
+    <body>
+        <script>
+            function solution (S, T) {
+                let answer = 0, lt = 1;
+
+                while (lt < S.length) {
+                    let wH = new Map();
+                    let w = S[lt - 1] + S[lt] + S[lt + 1]; // sliding window
+                    for (let item of w) { // window 해쉬
+                        (wH.has(item)) ? 
+                        wH.set(item, wH.get(item) + 1) :
+                        wH.set(item, 1);
+                    }
+                    for (let item of T) {
+                        if (!wH.has(item) || wH.get(item) === 0) {
+                            break;
+                        } else {
+                            wH.set(item, wH.get(item) - 1)
+                        }
+                    }
+                    let check = true;
+                    for (let val of wH.values()) { // wH에 0이 아닌 값이 있을 경우 탈락
+                        if (val !== 0) check = false; 
+                    }
+                    if (check) answer++;
+                    lt++;
+                }
+                return answer;
+            }
+            
+            let a="bacaAacba";
+            let b="abc";
+            console.log(solution(a, b));
+        </script>
+    </body>
+</html>
