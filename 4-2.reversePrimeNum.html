@@ -1,0 +1,38 @@
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>출력결과</title>
+    </head>
+    <body>
+        <script>
+            function isPrime (num) {
+                let len = Math.ceil(num / 2);
+                if (num === 1) return false;
+                for (let i = 2; i <= len; i++) {
+                    if (num % i === 0) return false; // 약수가 발견되면 소수가 아님
+                }
+                return true;
+            }
+
+            function solution (arr) {
+                let answer = [];
+                // 뒤집어서 소수만 출력
+                for (let item of arr) {
+                    let reverse = 0;
+                    while (item) {
+                        let rem = item % 10;
+                        item = Math.floor(item / 10);
+                        reverse = reverse * 10 + rem;
+                    }
+                    (isPrime(reverse)) && answer.push(reverse);
+                } return answer;
+            }
+            
+            let arr=[32, 55, 62, 20, 250, 370, 200, 30, 100];
+            console.log(solution (arr));
+        </script>
+    </body>
+</html>
+
+
+

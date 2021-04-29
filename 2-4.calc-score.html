@@ -1,0 +1,29 @@
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>출력결과</title>
+    </head>
+    <body>
+        <script>
+            // 1점인경우: 앞에 계속 틀리다 맞는 경우 1점, 한 번 맞은 경우
+            // 연속으로 맞을 경우: 2번 연속 (2점). 3번 연속(3점),, k번째 연속(k점)
+            // 0점: 틀렸을 때
+            function solution (arr) {
+                let answer = 0;
+                let cnt = 0;
+                for (let score of arr) {
+                    if (score === 1) {
+                        cnt ++;
+                        answer += cnt;
+                    } else cnt = 0;
+                    console.log(score, cnt)
+                } 
+                    
+                return answer;
+                }
+
+            let arr=[1, 0, 1, 1, 1, 0, 0, 1, 1, 0];
+            console.log(solution(arr));
+        </script>
+    </body>
+</html>

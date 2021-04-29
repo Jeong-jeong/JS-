@@ -1,0 +1,33 @@
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>출력결과</title>
+    </head>
+    <body>
+        <script>
+            function solution (arr) {
+                let answer = 0;
+                let max = Number.MIN_SAFE_INTEGER;
+                for (let item of arr) {
+                    let sum = String(item).split('').reduce( ( (pre , cur) => pre += Number(cur)), 0);
+                    if (sum > max) {
+                        max = sum;
+                        answer = item;
+                    } else if (sum === max) {
+                        if (item > answer) answer = item;
+                    }
+                }
+                return answer;
+            }
+            
+            
+            let arr=[128, 460, 603, 40, 521, 137, 123];
+            // 11, 10, 9, 4, 8, 11, 6
+            // 같을 경우 원래 숫자가 큰거
+            console.log(solution(arr));
+        </script>
+    </body>
+</html>
+
+
+

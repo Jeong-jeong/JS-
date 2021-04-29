@@ -1,0 +1,22 @@
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>출력결과</title>
+    </head>
+    <body>
+        <script>
+            function solution (day, arr) {
+                // 주어진 날짜와 자동차의 일의 자리 숫자를 보고 10부제를 위반하는 차량의 대수 출력
+                let answer = 0;
+                for (let item of arr) {
+                    // ⭐️ 10으로 나눈 나머지가 일의 자리가 됨!!!
+                    if (item % 10 === day) answer++;
+                }
+                return answer;
+            }
+            
+            arr=[12, 20, 54, 30, 87, 91, 30]; // 7대의 자동차 번호 끝 두 자리
+            console.log(solution(0, arr));
+        </script>
+    </body>
+</html>

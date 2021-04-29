@@ -1,0 +1,22 @@
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>출력결과</title>
+    </head>
+    <body>
+        <script>
+            function solution (str) {
+                let s = str.toLowerCase();
+                let arr = s.split('').reverse().join('');
+                return (s === arr) ? 'YES' : 'NO'
+            }
+            
+            let str="gooG";
+            console.log(solution(str));
+        </script>
+    </body>
+</html>
+
+
+
+

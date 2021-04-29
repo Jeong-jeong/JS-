@@ -1,0 +1,21 @@
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>출력결과</title>
+    </head>
+    <body>
+        <script>
+        // 세 수중 최솟값 구하기
+            function minimum (a, b, c) {
+                let answer;
+                if (a < b) answer = a;
+                else answer = b;
+                if (c < answer) answer = c; 
+
+                return answer;
+            }
+
+            console.log(minimum(6, 5, 2));
+        </script>
+    </body>
+</html>

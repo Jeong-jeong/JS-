@@ -1,0 +1,31 @@
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>출력결과</title>
+    </head>
+    <body>
+        <script> 
+            
+            function solution (arr) {
+                let answer = [];
+                answer.push(arr[0]); // 첫번째 학생은 무조건 보이므로 푸쉬
+
+                for (let i = 1; i < arr.length; i++) {
+
+                    if (arr[i] > arr[i - 1]) { // 뒤 학생 VS 앞 학생 비교
+                        
+                        if (arr[answer.length-1] < arr[i]) { // answer의 마지막 학생보다 현재 넣으려는 애가 클 경우에만
+                            answer.push(arr[i]); // answer에 푸쉬
+                        }
+                        
+                    };
+                    
+                }
+                return answer.length;
+            }
+
+            let arr=[130, 135, 148, 140, 145, 150, 150, 153];
+            console.log(solution(arr));
+        </script>
+    </body>
+</html>

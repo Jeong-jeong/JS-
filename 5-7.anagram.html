@@ -1,0 +1,27 @@
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>출력결과</title>
+    </head>
+    <body>
+        <script>
+            function solution (s1, s2) {
+                let sH = new Map();
+                for (let item of s1) {
+                    (sH.has(item) ?
+                    sH.set(item, sH.get(item) + 1) :
+                    sH.set(item, 1)
+                )}
+                for (let item of s2) {
+                    if (!sH.has(item) || sH.get(item) === 0) return 'NO';
+                        sH.set(item, sH.get(item) - 1);
+                }
+                return 'YES';
+            }
+            
+            let a="abaCC";
+            let b="Caaab";
+            console.log(solution(a, b));
+        </script>
+    </body>
+</html>
