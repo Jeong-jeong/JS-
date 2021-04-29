@@ -8,13 +8,17 @@
             function solution (s) {
                 const arr = [];
                 for (let x of s) {
-                    (x === '(') ? arr.push(x) : arr.pop()
+                    if (x === '(') arr.push(x);
+                    else {
+                        if (arr.length) arr.pop();
+                        else return 'NO';
+                    }
                 }
-                if (arr) return 'NO';
-                else 'YES';
+                if (arr.length) return 'NO';
+                else return 'YES';
             }
             
-            let a="(()(()))(()";
+            let a="(())()))";
             console.log(solution(a));
         </script>
     </body>
