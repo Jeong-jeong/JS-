@@ -6,23 +6,16 @@
     <body>
         <script>
             function solution (s) {
-                let count = 0;
-                let arr = [];
-                for (let i = 0; i < s.length; i++) {
-                    if (s[i] === '(') {
-                        count++;
-                    } else if (s[i] === ')') {
-                        count--;
-                    } 
-                    if (count === 0) {
-                        arr.push(s[i])
+                let stack = [];
+                for (let x of s) {
+                    if (x === ')') {
+                        while (stack.pop() !== '(');
+                    } else stack.push(x);
                 }
-                } 
-                
-            return arr.filter( x => x !== ')').join('')
+                return stack.join('');
             }
 
-            let str="(A(BC)D)EF(G(H)(IJ)K)LM(N)";
+            let str="(AB(A))B((A))";
             console.log(solution(str));
         </script>
     </body>
