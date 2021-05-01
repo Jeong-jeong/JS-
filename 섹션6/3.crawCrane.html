@@ -1,0 +1,49 @@
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>출력결과</title>
+    </head>
+    <body>
+        <script>
+            function solution (a, b) {
+                let answer = 0;
+                let p1 = 0, move = 0;
+                let crane;
+                let basket = [];
+                while (move < b.length) {
+                    crane = b[move] - 1;
+                    if (a[p1][crane] === 0) {
+                        p1++;
+                        if (p1 >= a.length) {
+                            p1 = 0;
+                            move++;
+                        }
+                    }
+                    else {
+                        basket.push(a[p1][crane]);
+                        console.log(basket)
+                        if (basket[basket.length - 2] === a[p1][crane]) {
+                            basket.pop();
+                            basket.pop();
+                            answer += 2;
+                        }
+                        a[p1].splice(crane, 1, 0);
+                        p1 = 0;
+                        move++;
+                    }
+                }
+                return answer;
+            }
+            
+            
+            let board =[[0,0,0,0,0],
+                   [0,0,1,0,3],
+                   [0,2,5,0,1],
+                   [4,2,4,4,2],
+                   [3,5,1,3,1]];
+
+            let moves =[1, 5, 3, 5, 1, 2, 1, 4];
+            console.log(solution(board, moves));
+        </script>
+    </body>
+</html>
