@@ -11,25 +11,20 @@
                 let crane;
                 let basket = [];
                 while (move < b.length) {
+                    let toy = a[p1][crane];
                     crane = b[move] - 1;
-                    if (a[p1][crane] === 0) {
-                        p1++;
-                        if (p1 >= a.length) {
-                            p1 = 0;
-                            move++;
-                        }
-                    }
-                    else {
-                        basket.push(a[p1][crane]);
-                        console.log(basket)
-                        if (basket[basket.length - 2] === a[p1][crane]) {
+                    if (toy === 0) {
+                        (p1 >= a.length) ? p1 = 0 && move++ : p1++;
+                    } else {
+                        basket.push(toy);
+                        if (basket[basket.length - 2] === toy) {
                             basket.pop();
                             basket.pop();
                             answer += 2;
                         }
-                        a[p1].splice(crane, 1, 0);
-                        p1 = 0;
-                        move++;
+                    a[p1].splice(crane, 1, 0);
+                    p1 = 0;
+                    move++;
                     }
                 }
                 return answer;
