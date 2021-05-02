@@ -5,30 +5,7 @@
     </head>
     <body>
         <script>
-            function solution (a, b) {
-                let answer = 0;
-                let p1 = 0, move = 0;
-                let crane;
-                let basket = [];
-                while (move < b.length) {
-                    let toy = a[p1][crane];
-                    crane = b[move] - 1;
-                    if (toy === 0) {
-                        (p1 >= a.length) ? p1 = 0 && move++ : p1++;
-                    } else {
-                        basket.push(toy);
-                        if (basket[basket.length - 2] === toy) {
-                            basket.pop();
-                            basket.pop();
-                            answer += 2;
-                        }
-                    a[p1].splice(crane, 1, 0);
-                    p1 = 0;
-                    move++;
-                    }
-                }
-                return answer;
-            }
+            
             
             
             let board =[[0,0,0,0,0],
