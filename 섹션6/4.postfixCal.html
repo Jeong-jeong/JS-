@@ -7,10 +7,9 @@
         <script>
             function solution(s){  
                 let stack = [];
-                let answer = stack.join('');
-                let arr = Array.from(s);
+                let answer;
 
-                for (x of s) {
+                for (let x of s) {
                     if (isFinite(+x)) stack.push(+x);
                     else {
                         let b = stack.pop();
