@@ -6,24 +6,17 @@
     <body>
         <script>
             function solution(need, plan){
-                let queue = [];
-                let planArr = Array.from(plan);
-                for (let x of need) {
-                    while (planArr.length) {
-                        let subject = planArr.shift();
-                        if (subject === x) {
-                            queue.push(subject);
-                            break;
-                        };
+                let queue = Array.from(need);
+                for (let x of plan) {
+                    if (queue.includes(x)) {
+                        if (x !== queue.shift()) return 'NO';
                     }
                 }
-                
-                return (queue.join('') === need) ? 'YES' : 'NO'
-                
+                return (queue.length) ? 'NO' : 'YES';
             }
 
             let a="CBA";
-            let b="CGEADB";
+            let b="CGEBD";
             console.log(solution(a, b));
         </script>
     </body>
