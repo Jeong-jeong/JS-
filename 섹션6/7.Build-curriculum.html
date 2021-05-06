@@ -1,0 +1,30 @@
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>출력결과</title>
+    </head>
+    <body>
+        <script>
+            function solution(need, plan){
+                let queue = [];
+                let planArr = Array.from(plan);
+                for (let x of need) {
+                    while (planArr.length) {
+                        let subject = planArr.shift();
+                        if (subject === x) {
+                            queue.push(subject);
+                            break;
+                        };
+                    }
+                }
+                
+                return (queue.join('') === need) ? 'YES' : 'NO'
+                
+            }
+
+            let a="CBA";
+            let b="CGEADB";
+            console.log(solution(a, b));
+        </script>
+    </body>
+</html>
