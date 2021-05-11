@@ -6,7 +6,15 @@
     <body>
         <script>
             function solution(arr){
-                return arr.sort((a, b) => a - b)
+                let len = arr.length;
+                for (let i = 0; i < len - 1; i++) {
+                    let idx = i;
+                    for (let j = i + 1; j < len; j++) {
+                        if (arr[j] < arr[idx]) idx = j;
+                    }
+                    [arr[i], arr[idx]] = [arr[idx], arr[i]]
+                }
+                return arr
             }
 
             let arr=[13, 5, 11, 7, 23, 15];
