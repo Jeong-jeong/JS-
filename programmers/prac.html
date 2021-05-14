@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+</head>
+<body>
+	<script>
+		function solution (arr) {
+			let hashMap = new Map();
+			let answer = [];
+			for (let x of arr) {
+				hashMap.has(x) ? 
+				hashMap.set(x, hashMap.get(x) + 1) :
+				hashMap.set(x, 1)
+			};
+			for (let x of hashMap.values()) {
+				if (x > 1) answer.push(x);
+			}
+			return (!answer.length) ? [-1] : answer;
+		}
+
+		let arr = [3, 2, 4, 4, 2, 5, 2, 5, 5];
+		console.log(solution(arr));
+	</script>
+</body>
+</html>
