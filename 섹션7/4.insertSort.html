@@ -1,0 +1,26 @@
+<!-- 오름차순 정렬 : 삽입 정렬 -->
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>출력결과</title>
+    </head>
+    <body>
+        <script>
+            function solution(arr){
+                let len = arr.length;
+                for (let i = 1; i < len; i++) {
+                    let tmp = arr[i] , j;
+                    for (j = i - 1; j >= 0; j--) {
+                        if (arr[j] > tmp) arr[j + 1] = arr[j];
+                        else break;
+                    }
+                    arr[j + 1] = tmp;
+                }
+                return arr;
+            }
+
+            let arr=[11, 7, 5, 6, 10, 9];
+            console.log(solution(arr));
+        </script>
+    </body>
+</html>
