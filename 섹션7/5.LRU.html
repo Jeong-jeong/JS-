@@ -11,17 +11,16 @@
                     if (memory.includes(arr[i])) { // 캐시가 메모리에 있다면,
                         let tmp = arr[i];
                         let copiedNumber = memory.indexOf(arr[i]) // 캐시 index 확인
-                        if (copiedNumber < 2) { // 캐시 index가 0 이나 1일 경우
-                            [[memory[0], memory[1]] = [memory[1], memory[0]]] // 둘 자리만 바꿔줌
-                            } else { // 캐시 index가 2 이상일 경우 삽입정렬
-                                for (let j = copiedNumber; j >= 0; j--) { // 캐시 앞에 있는 애들 뒤로 밀어줌
-                                    memory[j] = memory[j - 1];
-                                }
-                                memory[0] = tmp; // 맨 앞은 캐시가
-                            }
-
+                        for (let j = copiedNumber; j > 0; j--) { // 캐시 앞에 있는 애들 뒤로 밀어줌
+                            [[memory[j - 1], memory[j]] = [memory[j], memory[j - 1]]] // 둘 자리만 바꿔줌
+                        }
+                        memory[0] = tmp; // 맨 앞은 캐시로
+                        
                     } else { // 캐시가 메모리에 없다면
-                        memory.unshift(arr[i]) && memory.pop(); // 앞에 넣어주고 뒤에 짜름
+                        memory[size - 1] = arr[i];
+                        for (let i = size - 1; i > 0; i--) {
+                            [[memory[i - 1], memory[i]] = [memory[i], memory[i - 1]]]
+                        }
                     }
                 }
                 return memory;
