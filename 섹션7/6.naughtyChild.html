@@ -7,7 +7,15 @@
         <script>
             function solution(arr){
                 let answer = [];
-                let original = [...arr].sort((a, b) => a - b);
+                let original = [...arr];
+                let len = original.length;
+                for (let i = 0; i < len - 1; i++) {
+                    for (let j = 0; j < len - 1; j++) {
+                        if (original[j] > original[j + 1]) {
+                            [[original[j], original[j + 1]] = [original[j + 1], original[j]]] 
+                        }
+                    }   
+                }
                 arr.forEach((v, i) => {
                     if (v !== original[i]) answer.push(i + 1);
                 })
