@@ -1,0 +1,39 @@
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>출력결과</title>
+    </head>
+    <body>
+        <script>
+            function count (songs, capacity) {
+                // DVD의 용량이 mid로 정해졌을 때 모든 곡을 기록하고 DVD 수 return
+                // (DVD)의 갯수는 M개보다 작을 수도 있다.
+                let sum = 0, cnt = 1;
+                for (let x of songs) {
+                    if (sum + x > capacity) {
+                        cnt++;
+                        sum = x;
+                    } else sum += x;
+                }
+                return cnt;
+            }
+
+            function solution(m, songs){ // m = DVD 수
+                let answer;
+                let start = Math.max(...songs);
+                let end = songs.reduce((pre, cur) => pre + cur, 0);
+                while (start <= end) {
+                    let mid = parseInt((start + end) / 2); // 각 DVD의 크기
+                    if (count(songs, mid) <= m) {
+                        answer = mid;
+                        end = mid - 1;
+                    } else start = mid + 1;
+                }
+                return answer;
+            }
+
+            let arr=[1, 2, 3, 4, 5, 6, 7, 8, 9];
+            console.log(solution(3, arr));
+        </script>
+    </body>
+</html>
