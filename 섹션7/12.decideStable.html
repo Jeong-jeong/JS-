@@ -1,0 +1,45 @@
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>출력결과</title>
+    </head>
+    <body>
+        <script>
+            // 답을 mid으로 추정하고 푸는 것이 키 포인트!
+            function horseCnt (distance ,stables) {
+                let ep = stables[0];
+                let cnt = 1;
+                for (let x of stables) {
+                    if ((x - ep) >= distance) {
+                        cnt++;
+                        ep = x;
+                        console.log(ep, cnt, distance);
+                    }
+                }
+                return cnt;
+            }
+
+            function solution (horses, stables) {
+                let answer;
+                console.log(stables.sort((a, b) => a - b));
+                let start = 1;
+                let end = stables[stables.length - 1] - start;
+                while (start <= end) {
+                    let mid = parseInt((start + end) / 2);
+                    if (horseCnt(mid, stables) >= horses) {
+                        start = mid + 1;
+                        answer = mid;
+                    } else end = mid - 1;
+                }
+                return answer;
+            }
+
+
+
+
+            let arr=[1, 2, 8, 4, 9];
+            console.log(solution(3, arr));
+        </script>
+    </body>
+</html>
+
