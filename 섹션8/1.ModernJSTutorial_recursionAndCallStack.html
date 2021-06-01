@@ -5,40 +5,45 @@
     </head>
     <body>
         <script>
-            // 재귀적 순회 (recursive traversal)
-            // 모든 임직원들의 급여를 더한 값을 구하기
-            let company = { // 동일한 객체(간결성을 위해 약간 압축함)
-                sales: [{name: 'John', salary: 1000}, {name: 'Alice', salary: 1600 }],
-                development: {
-                  sites: [{name: 'Peter', salary: 2000}, {name: 'Alex', salary: 1800 }],
-                  internals: [{name: 'Jack', salary: 1300}]
-                }
-              };
-
-              function sumSalaries (department) {
-                // 하위부서가 없는 '단순한' 부서 - 반복문 사용
-                if (Array.isArray(department)) { // 배열일 경우
-                    return department.reduce((prev, cur) => prev + cur.salary, 0); // 배열의 요소를 합함
-                // n개의 하위부서가 있는 객체 - 재귀적 순회
-                } else { // 객체일 경우
-                    let sum = 0;
-                    for (let subdep of Object.values(department)) {
-                        sum += sumSalaries( subdep ); // 재귀 호출로 각 하위 부서 임직원 급여의 총합을 구함.
+            // 연결 리스트 (빠른 삽입 / 삭제에 탁월) = linked list
+            // 배열은 요소 '삭제'와 '삽입'에 들어가는 비용이 많이 듦.
+            // unshift(something)의 경우, 삽입하기 위해 기존 요소들의 번호를 다시 매겨야 함.
+            // shift도 마찬가지
+            let list = {
+                value: 1,
+                next: { // 다음 연결 리스트 요소를 참조하는 프로퍼티. 다음 요소가 없을 땐 null
+                    value: 2,
+                    next: {
+                        value: 3,
+                        next: {
+                            value: 4,
+                            next: null
+                        }
                     }
-                    return sum;
                 }
-              }
+            };
+            // list의 next 프로퍼티를 이용해 이어지는 객체 어디든 도달 가능.
 
-              console.log(sumSalaries(company));
-              // 처음 company 객체를 만나면 else로 가서 sales 요소와 development 요소를 for문 돌림.
-              // sumSalaries(sales, development)가 호출되고 
-              // sumSalaries(sales)는 배열로 reduce를 통해 1000 + 600 = 1600 더해진 배열 반환.
-              // else의 for문으로 돌아와 sum += 1600이 됨.
-              // 다음 sumSalaries(development)가 호출되지만 객체이기 때문에
-              // 다시 else로 가서 for 반복문으로 site 배열과 internals 배열이 순회됨.
-              // sumSalaries(site)와 sumSalaries(internals)가 호출되고 배열이기 때문에 reduce로 더해진 값을 return
-              // sum에 1600 + 2000 + 1800 + 1300 = 7700 하고 sum return;
-              
+            // 전체 리스트 나누고 합치기
+            let secondList = list.next.next;
+            list.next.next = null;
+
+            // 요소 추가, 삭제
+            let otherList = { value: 1 };
+            otherList.next = { value: 2 };
+            otherList.next.next = { value: 3 };
+            otherList.next.next.next = { value: 4 };
+
+            otherList = { value: 'new', next: otherList };
+            
+            otherList.next = otherList.next.next;
+            console.log(otherList);
+
+            // 리스트의 단점은 인덱스를 통해 바로 원하는 요소에 접근 불가.
+
+
+
+
 
         </script>
     </body>
