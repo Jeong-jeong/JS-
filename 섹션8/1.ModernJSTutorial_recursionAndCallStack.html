@@ -1,0 +1,29 @@
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>출력결과</title>
+    </head>
+    <body>
+        <script>
+            // x를 n 제곱하는 함수 pow(x, n)
+            function pow(x, n) {
+                if (n === 1) return x;
+                else {
+                    return x * pow(x, n - 1);
+                }
+            }
+            console.log(pow (2, 4));
+
+            // 과정
+            // pow (2, 4) 호출 : 2 * pow(2, 3);
+            // pow (2, 3) 호출 : 2 * pow(2, 2):
+            // pow (2, 2) 호출 : 2 * pow(2, 1);
+            // pow (2, 1) 호출 : n === 1 이므로 return 2;
+            // 콜스택 상단부터 하나씩 실행되고 pop됨.
+            // pow (2, 2) : 2 * 2;
+            // pow (2, 3) : 2 * 4;
+            // pow (2, 4) : 2 * 8 = 16; (return)
+            
+        </script>
+    </body>
+</html>
