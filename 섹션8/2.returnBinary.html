@@ -1,0 +1,31 @@
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>출력결과</title>
+    </head>
+    <body>
+        <script>
+            function solution(n){
+                // 재귀를 이용해 십진수를 이진수로
+                // 몫이 1이 될 때까지 계속 나누기.
+                // 나머지 + 마지막 몫
+                let answer = '';
+                function DFS (L) {
+                    if (L === 1) {
+                        answer += L;
+                        return;
+                    }
+                    else {
+                        DFS (parseInt(L / 2));
+                        answer += (L % 2);
+                    }
+                }
+                DFS (11);
+                return answer;
+
+            }
+
+            console.log(solution(11));
+        </script>
+    </body>
+</html>
