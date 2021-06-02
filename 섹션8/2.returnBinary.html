@@ -7,12 +7,11 @@
         <script>
             function solution(n){
                 // 재귀를 이용해 십진수를 이진수로
-                // 몫이 1이 될 때까지 계속 나누기.
-                // 나머지 + 마지막 몫
+                // 몫이 0이 될 때까지 계속 나누기.
+                // 나머지를 거꾸로 더함.
                 let answer = '';
                 function DFS (L) {
-                    if (L === 1) {
-                        answer += L;
+                    if (L === 0) {
                         return;
                     }
                     else {
@@ -20,7 +19,7 @@
                         answer += (L % 2);
                     }
                 }
-                DFS (11);
+                DFS (n);
                 return answer;
 
             }
