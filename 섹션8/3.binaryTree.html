@@ -1,0 +1,25 @@
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>출력결과</title>
+    </head>
+    <body>
+        <script>
+            // 이진트리: 각 노드가 자식을 최대 2개까지 가질 수 있는 트리.
+            function solution(n){
+                function DFS (v) {
+                    if (v > 7) return;
+                    else {
+                        // 전위순회
+                        console.log(v);
+                        DFS (v * 2);
+                        DFS (v * 2 + 1);
+                    }
+                }
+                DFS (n);
+            }
+
+            console.log(solution(1));
+        </script>
+    </body>
+</html>
