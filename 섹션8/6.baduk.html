@@ -6,12 +6,12 @@
     <body>
         <script>
             function solution(c, arr){
-                // C를 넘지 않으며 가장 무겁게.
                 let answer = 0;
                 let n = arr.length;
                 function DFS (L, sum) {
                     if (L === n) {
-                        if (sum <= c) answer = Math.max(sum, answer);
+                        if (sum > c) return; // sum이 c를 넘으면 바로 return;
+                        answer = Math.max(sum, answer);
                     }else {
                         DFS (L + 1, sum + arr[L]);
                         DFS (L + 1, sum);
