@@ -1,0 +1,39 @@
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>출력결과</title>
+    </head>
+    <body>
+        <script>
+            function solution(m, ps, pt){         
+                // m 안에 최대 점수 출력
+                let answer = 0;
+                let n = pt.length;
+                let check = Array.from({length: n}, () => 0);
+                
+                function DFS (L, sum) {
+                    if (sum > m) return;
+                    if (L === n) {
+                        tmp = 0;
+                        for (let i = 0; i < n; i++) {
+                            if (check[i] === 1) tmp += ps[i];
+                        }
+                        answer = Math.max(answer, tmp);
+
+                    } else {
+                        check[L] = 1;
+                        DFS (L + 1, sum + pt[L]);
+                        check[L] = 0;
+                        DFS (L + 1, sum);
+                    }
+                }
+                DFS (0, 0);
+                return answer;
+            }
+
+            let ps=[10, 25, 15, 6, 7]; // 얻는 점수
+            let pt=[5, 12, 8, 3, 4] // 푸는 시간
+            console.log(solution(20, ps, pt)); // 제한시간
+        </script>
+    </body>
+</html>
