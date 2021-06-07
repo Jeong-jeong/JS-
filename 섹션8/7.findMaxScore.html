@@ -9,25 +9,17 @@
                 // m 안에 최대 점수 출력
                 let answer = 0;
                 let n = pt.length;
-                let check = Array.from({length: n}, () => 0);
-                
-                function DFS (L, sum) {
-                    if (sum > m) return;
-                    if (L === n) {
-                        tmp = 0;
-                        for (let i = 0; i < n; i++) {
-                            if (check[i] === 1) tmp += ps[i];
-                        }
-                        answer = Math.max(answer, tmp);
 
+                function DFS (L, sum, time) {
+                    if (time > m) return;
+                    if (L === n) {
+                        answer = Math.max(answer, sum);
                     } else {
-                        check[L] = 1;
-                        DFS (L + 1, sum + pt[L]);
-                        check[L] = 0;
-                        DFS (L + 1, sum);
+                        DFS (L + 1, sum + ps[L], time + pt[L]);
+                        DFS (L + 1, sum, time);
                     }
                 }
-                DFS (0, 0);
+                DFS (0, 0, 0);
                 return answer;
             }
 
