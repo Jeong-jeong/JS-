@@ -9,28 +9,23 @@
 	<script>
 		// [1차] 비밀지도
 		function solution(n, arr1, arr2) {
-			// 각 배열을 이진수로 변환
-			// 두 이진수를 합침
-			// 1 = '#', 0 = ' ' 형태의 배열로 출력
 			let sum = [];
 			for (let i = 0; i < arr1.length; i++) {
-					let element = String((+arr1[i].toString(2)) + (+arr2[i].toString(2)));
-					while (element.length !== n) {
-							element += '0';
-					}
+					let element = String((+arr1[i].toString(2)) + (+arr2[i].toString(2)))
+											.padStart(n, '0');
 					sum.push(element)
 			}
 			let answer = [];
 			for (let x of sum) {
-					console.log(x)
 					let copy = '';
-					for (let i = 0; i <= n; i++) {
+					for (let i = 0; i < n; i++) {
 							if (+x[i] === 0) copy += ' ';
-							else if (+x[i] > 0) copy += '#';
+							else copy += '#';
 					}
 					answer.push(copy)
 			}
 			return answer;
+			
 	}
 	</script>
 </body>
