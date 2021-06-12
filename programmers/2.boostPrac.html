@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+</head>
+<body>
+	<script>
+		function solution(n, words) {
+			let answer = [0, 0];
+			let usedWord = [];
+			usedWord[0] = words[0];
+			
+			for (let i = 1; i < words.length; i++) {
+					const beforeWord = words[i - 1];
+					const currentWord = words[i];
+					// 이전에 사용한 적이 없고, 앞 단어 맨 뒤 === 뒷 단어 맨 앞
+					if (beforeWord[beforeWord.length - 1] === currentWord[0] &&
+						 !usedWord.includes(currentWord) &&
+						 currentWord.length !== 1) {
+							usedWord.push(currentWord);
+					} else { // 그렇지 않으면, 탈락자의 차례와 번호를 return
+							let player = (i % n) + 1;
+							let turn = parseInt(i / n) + 1;
+							return answer = [player, turn];
+					}
+			}
+			return answer;
+	}
+	</script>
+</body>
+</html>
