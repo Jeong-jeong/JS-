@@ -8,21 +8,21 @@
 <body>
 	<script>
 		function solution(n, words) {
+			// [번호, 차례] return
 			let answer = [0, 0];
-			let usedWord = [];
-			usedWord[0] = words[0];
+			const usedWords = [words[0]];
 			
 			for (let i = 1; i < words.length; i++) {
 					const beforeWord = words[i - 1];
 					const currentWord = words[i];
-					// 이전에 사용한 적이 없고, 앞 단어 맨 뒤 === 뒷 단어 맨 앞
-					if (beforeWord[beforeWord.length - 1] === currentWord[0] &&
-						 !usedWord.includes(currentWord) &&
-						 currentWord.length !== 1) {
-							usedWord.push(currentWord);
-					} else { // 그렇지 않으면, 탈락자의 차례와 번호를 return
-							let player = (i % n) + 1;
-							let turn = parseInt(i / n) + 1;
+					// 앞 단어 막 글자와 뒷 단어의 첫 글자가 같고, 이전에 사용한 적이 없고, 한 글자 단어가 아니라면
+					if (beforeWord[beforeWord.length - 1] === currentWord[0] && 
+							!usedWords.includes(currentWord) && 
+							currentWord.length !== 1) {
+									usedWords.push(currentWord);
+					} else { // 아니라면 번호, 차례 return
+							const turn = parseInt(i / n) + 1;
+							const player = (i % n) + 1;
 							return answer = [player, turn];
 					}
 			}
