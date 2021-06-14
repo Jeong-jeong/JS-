@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+</head>
+<body>
+	<script>
+		function J (a, b) {
+			let intersection = 0;
+			let union = new Map();
+			for (let [key, value] of a) {
+					if (b.has(key)) { // b가 a의 key를 갖고 있다면 (둘이 같다면)
+							intersection += Math.min(value, b.get(key));
+							union.set(key, Math.max(value, b.get(key)));
+					} else { // 둘이 같지 않다면(union에 a가 없는 것)
+							union.set(key, value); // a의 key와 value 넣어주기
+					}
+			}
+			for (let [key, value] of b) { // union에 b가 없다면
+					if (!union.has(key)) union.set(key, value); // b의 key와 value 넣어주기
+			}
+			
+			let unionSum = 0;
+			for (let value of union.values()) {
+					unionSum += value;
+			}
+			return parseInt((intersection / unionSum) * 65536);
+	}
+	
+	function MakeMultiplexSet (s) { // 다중집합 원소 만들기
+			s = s.toLowerCase();
+			let MultiSet = new Map();
+			for (let i = 0; i < s.length - 1; i++) {
+					let pair = s[i] + s[i + 1];
+					const pattern_eng = /^[a-zA-Z]*$/;
+					if (MultiSet.has(pair)) {
+							MultiSet.set(pair, MultiSet.get(pair) + 1)
+					} else (pattern_eng.test(pair)) && MultiSet.set(pair, 1);
+					
+			}
+			return MultiSet;
+	}
+	
+	function solution(str1, str2) {
+			// a와 b '모두' 공집합일 때 처리
+			if (!MakeMultiplexSet(str1).size && 
+					!MakeMultiplexSet(str2).size) 
+					return 65536;
+			return J (MakeMultiplexSet(str1), MakeMultiplexSet(str2))
+	}
+	</script>
+</body>
+</html>
