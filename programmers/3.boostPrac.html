@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+</head>
+<body>
+	<script>
+		// 수식 최대화
+		function solution(expression) {
+			// 가장 큰 숫자(절댓값) 제출
+			const priorities = [
+					['+', '-', '*'],
+					['+', '*', '-'],
+					['-', '+', '*'],
+					['-', '*', '+'],
+					['*', '-', '+'],
+					['*', '+', '-']
+			];
+			const results = [];
+			
+			// 1. 우선순위 배열을 돌며 expression에 연산자가 있는지 찾기
+			for (let priority of priorities) {
+					const result = expression.split(/(\D)/);
+					for (let element of priority) {
+							// 2. 연산자가 있다면 앞 뒤로 계산
+							while (result.includes(element)) {
+									let idx = result.indexOf(element);
+									result.splice(idx - 1, 3, eval(result.slice(idx - 1, idx + 2).join('')));
+							}
+					}
+					console.log(result);
+					results.push(Math.abs(result));
+			}
+			// 3. 결과값 중 절댓값으로 가장 큰 값 return
+			return Math.max(...results);
+	}
+	</script>
+</body>
+</html>
