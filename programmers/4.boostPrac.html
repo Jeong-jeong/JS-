@@ -7,48 +7,34 @@
 </head>
 <body>
 	<script>
-		function J (a, b) {
-			let intersection = 0;
-			let union = new Map();
-			for (let [key, value] of a) {
-					if (b.has(key)) { // b가 a의 key를 갖고 있다면 (둘이 같다면)
-							intersection += Math.min(value, b.get(key));
-							union.set(key, Math.max(value, b.get(key)));
-					} else { // 둘이 같지 않다면(union에 a가 없는 것)
-							union.set(key, value); // a의 key와 value 넣어주기
-					}
-			}
-			for (let [key, value] of b) { // union에 b가 없다면
-					if (!union.has(key)) union.set(key, value); // b의 key와 value 넣어주기
-			}
+		function solution (str1, str2) {
+			// 자카드 유사도 (교집합 크기 / 합집합 크기)
 			
-			let unionSum = 0;
-			for (let value of union.values()) {
-					unionSum += value;
+			function explode (s) { 
+			// 1. 두개씩 분할해서 set에 저장
+					let arr = [];
+				 for (let i = 0; i < s.length - 1; i++) {
+						 const pattern_eng = /^[a-zA-Z]*$/;
+						 const pair = s.substring(i, i + 2);
+						 pattern_eng.test(pair) && arr.push(pair.toLowerCase());
+				 }
+					return arr;     
 			}
-			return parseInt((intersection / unionSum) * 65536);
-	}
-	
-	function MakeMultiplexSet (s) { // 다중집합 원소 만들기
-			s = s.toLowerCase();
-			let MultiSet = new Map();
-			for (let i = 0; i < s.length - 1; i++) {
-					let pair = s[i] + s[i + 1];
-					const pattern_eng = /^[a-zA-Z]*$/;
-					if (MultiSet.has(pair)) {
-							MultiSet.set(pair, MultiSet.get(pair) + 1)
-					} else (pattern_eng.test(pair)) && MultiSet.set(pair, 1);
-					
-			}
-			return MultiSet;
-	}
-	
-	function solution(str1, str2) {
-			// a와 b '모두' 공집합일 때 처리
-			if (!MakeMultiplexSet(str1).size && 
-					!MakeMultiplexSet(str2).size) 
-					return 65536;
-			return J (MakeMultiplexSet(str1), MakeMultiplexSet(str2))
+			const a = explode (str1);
+			const b = explode (str2);
+			const set = new Set ([...a, ...b]);
+			
+			// set이랑 a, b를 비교해서 최솟값, 최댓값 넣기
+			let intersection = 0;
+			let union = 0;
+			set.forEach ((v, i) => {
+					let hash1 = a.filter(e => e === v).length;
+					let hash2 = b.filter(e => e === v).length;
+					intersection += Math.min(hash1, hash2);
+					union += Math.max(hash1, hash2);
+			})
+			
+			return (!union) ? 65536 : parseInt((intersection / union) * 65536); 
 	}
 	</script>
 </body>
