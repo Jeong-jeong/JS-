@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+</head>
+<body>
+	<script>
+		// 스킬트리 Lev.2
+		function solution(skill, skill_trees) {
+			const arraySkill = skill.split('');
+			let answer = 0;
+			skill_trees.forEach((v, i) => {
+					let filteredTrees = v.split('').filter(e => arraySkill.includes(e)).join('');
+					if (skill.substring(0, filteredTrees.length) === filteredTrees) answer++;
+			})
+			return answer;
+	}
+			
+	</script>
+</body>
+</html>
