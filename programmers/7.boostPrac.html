@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+</head>
+<body>
+	<script>
+		function solution(dartResult) {
+			let result = [];
+			let point = '';
+	
+			for (let char of dartResult) {
+					if (char === 'S' || char === 'D' || char === 'T') { // 보너스일 경우
+							let score = applyBonus (point, char); // 보너스 계산 결과 return
+							result.push(score);
+							point = ''; // 점수 초기화
+					} 
+					else if (char === '*' || char === '#') { // 옵션일 경우
+							let previousIdx = result.length - 1;
+							applyOption (result, previousIdx, char);
+					}
+					else point += char; // 점수 숫자로 변환
+			}
+			return result.reduce((a, c) => a + c);
+	}
+	
+	
+	function applyBonus (score, bonus) { // 점수, 보너스 종류 매개변수로 받음
+			score = +score;
+			if (bonus === 'S') return Math.pow(score, 1);
+			if (bonus === 'D') return Math.pow(score, 2);
+			if (bonus === 'T') return Math.pow(score, 3);
+	}
+	
+	function applyOption (result, previousIdx, option) { // 옵션 계산
+			let length = result.length; // 2
+			
+			if (option === '*') {
+					result[previousIdx] *= 2; // 맨 마지막 요소를 두배로
+					if (previousIdx - 1 >= 0) { // 스타상이 첫번째 기회가 아니라면
+							result[previousIdx - 1] *= 2 // 전 요소도 2배로
+					};
+			}
+			if (option === '#') {
+					result[length - 1] *= -1;
+			}
+	}
+	</script>
+</body>
+</html>
