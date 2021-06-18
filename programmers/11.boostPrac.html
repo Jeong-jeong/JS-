@@ -9,23 +9,22 @@
 	<script>
 		// 오픈 채팅방
 		function solution (record) {
-			let result = [];
+			const result = [];
 			let saveIdAndNickName = {};
-			const finalOutput = [];
+			
 			for (let str of record) {
-					let arr = str.split(' ');
-					(arr[0] !== 'Leave') && (saveIdAndNickName[arr[1]] = arr[2]);
-					if (arr[0] === 'Enter') result.push(`${arr[1]}님이 들어왔습니다.`)
-					else if (arr[0] === 'Leave') result.push(`${arr[1]}님이 나갔습니다.`)
+					const [entrace, userId, nickName] = str.split(' ');
+					(entrace !== 'Leave') && (saveIdAndNickName[userId] = nickName);
+					if (entrace === 'Enter') result.push(`${userId}님이 들어왔습니다.`)
+					else if (entrace === 'Leave') result.push(`${userId}님이 나갔습니다.`)
 			}
 			
-			result.forEach((v, i) => {
+			return result.map(v => {
 					let division = v.indexOf('님');
 					let userId = v.substring(0, division);
 					let output = v.substring(division);
-					finalOutput.push(saveIdAndNickName[userId] + output)
+					return (saveIdAndNickName[userId] + output)
 			})
-			return finalOutput;
 	}
 	</script>
 </body>
