@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+</head>
+<body>
+	<script>
+		// 튜플
+		function solution(s) {
+			const answer = [];
+			const sLen = s.length;
+			let temp = '';
+			let arr = [];
+			
+			for (let i = 0; i < sLen; i++) { // 배열 변환
+					if (+s[i] === +s[i] || (s[i] === ',' && +s[i - 1] === +s[i - 1])) {
+							if (s[i + 1] === '}') {
+									temp += s[i]
+									arr.push(temp.split(','));
+									temp = '';
+							} else {
+									temp += s[i];
+							}
+					}
+			}
+			
+			const aLen = arr.length;
+			for (let i = 0; i < aLen; i++) { // 원소 길이 오름차순 정렬
+					for (let j = 0; j < aLen - 1; j++) {
+							if(arr[j].length > arr[j + 1].length) {
+									let small = arr[j + 1];
+									arr[j + 1] = arr[j];
+									arr[j] = small;
+							}
+					}
+			}
+			
+			for (let x of arr) {
+					for (let y of x) {
+							(answer.includes(+y)) ? y : answer.push(+y)
+					}
+			}
+			return answer;
+	}
+	</script>
+</body>
+</html>
