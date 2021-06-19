@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+</head>
+<body>
+	<script>
+		// 예산
+		function solution(d, budget) {
+			const n = d.length;
+			
+			// 오름차순 정렬
+			for (let i = 0; i < n; i++) {
+					for (let j = 0; j < n - 1; j++) {
+							if (d[j] > d[j + 1]) {
+									let tmp = d[j + 1];
+									d[j + 1] = d[j];
+									d[j] = tmp;
+							}            
+					}
+			}
+			
+			let answer = 0, sum = 0, cnt = 0;
+			for (let i = 0; i < n; i++) {
+					if ((sum += d[i]) <= budget) {
+					cnt++;
+					}
+					else return answer = Math.max(cnt, answer);
+			}
+			return answer = Math.max(cnt, answer);
+	}
+	</script>
+</body>
+</html>
