@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+</head>
+<body>
+	<script>
+		// 방문 길이
+		function solution(dirs) {
+			// 처음 걸어본 길의 길이 return
+			// 1 <= dirs <= 500
+			let record = [];
+			let start = [0, 0];
+			let recordLen = record.length;
+			let answer = 0;
+			
+	
+			for (let direction of dirs) {
+					let before = [...start].join(',');
+					if (direction === 'U') {
+							(start[0] + 1 <= 5) && start[0]++;
+					}
+					else if (direction === 'D') {
+							(start[0] - 1 >= -5) && start[0]--;
+					}
+					else if (direction === 'R') {
+							(start[1] + 1 <= 5) && start[1]++;
+					}
+					else {
+							(start[1] - 1 >= -5) && start[1]--;
+					}
+					let after = [...start].join(',');
+					(before !== after) && record.push([before, after]);
+			}
+			
+					
+	}
+	</script>
+</body>
+</html>
