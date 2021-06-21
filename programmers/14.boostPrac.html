@@ -9,16 +9,14 @@
 	<script>
 		// 방문 길이
 		function solution(dirs) {
-			// 처음 걸어본 길의 길이 return
-			// 1 <= dirs <= 500
 			let record = [];
-			let start = [0, 0];
 			let recordLen = record.length;
-			let answer = 0;
-			
+			let start = [0, 0];
 	
 			for (let direction of dirs) {
+					
 					let before = [...start].join(',');
+					
 					if (direction === 'U') {
 							(start[0] + 1 <= 5) && start[0]++;
 					}
@@ -31,11 +29,24 @@
 					else {
 							(start[1] - 1 >= -5) && start[1]--;
 					}
+					
 					let after = [...start].join(',');
 					(before !== after) && record.push([before, after]);
 			}
 			
-					
+			return removeDuplication(record).length;
+			
+	}
+	
+	function removeDuplication (arr) { // 중복 제거
+			let itemsFound = {};
+			let uniques = [];
+			for (let x of arr) { 
+					if (itemsFound[x] || itemsFound[x.reverse()]) continue;
+					uniques.push(x);
+					itemsFound[x] = true;
+			}
+			return uniques;
 	}
 	</script>
 </body>
