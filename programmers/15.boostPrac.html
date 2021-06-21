@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+</head>
+<body>
+	<script>
+		// 문자열 압축
+		function solution(s) {
+    
+			const sLen = s.length;
+			const compressionLists = [];
+			
+			if (sLen === 1 || sLen === 2) return (sLen === 1) ? 1 : 2;
+			
+			for (let cut = 1; cut <= parseInt(sLen / 2); cut++) {
+			// 1 ~ n / 2 만큼 반복문 돌리기 (n / 2 를 넘으면 압축되지 않음!)
+			let compression = '';
+			let countSameWord = 1;
+					
+					for (let index = 0; index < sLen; index += cut) {
+					// 0부터 cut 만큼 잘라서 비교
+							let cuttedWord = s.substring(index, index + cut);
+							let nextCuttedWord = s.substring(index + cut, index + cut + cut);
+							
+							if (cuttedWord !== nextCuttedWord) { // 뒷 문자랑 같지 않다면
+									if (countSameWord > 1) compression += countSameWord;
+									compression += cuttedWord;
+									countSameWord = 1;
+							}
+							else countSameWord++;
+					}
+					
+					compressionLists.push(compression);
+			}
+			let answer = Number.MAX_SAFE_INTEGER;
+			
+			compressionLists.forEach(v => answer = Math.min(v.length, answer));
+			
+			return answer;
+			
+	}
+	</script>
+</body>
+</html>
