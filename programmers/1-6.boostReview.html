@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+</head>
+<body>
+	<script>
+		// 실패율 복습 (테스트 22: 1300ms 소요)
+		function solution(N, stages) {
+    
+			let result = []; // 정렬을 위해 배열 자료구조 사용
+			let clear = stages.length;
+			
+			for (let stage = 0; stage < N; stage++) {
+					let notClear = stages.filter(v => v === stage + 1).length;
+					let failure = notClear / clear;
+					clear -= notClear;
+					
+					result.push([stage + 1, failure]);
+			}
+			
+			return descendingOrder(result).map(stage => {return stage[0]}); // stage만 모아 배열로 리턴
+					
+	}
+	
+	const descendingOrder = (arr) => { // 내림차순 정렬 함수
+			const n = arr.length;
+			for (let i = 0; i < n - 1; i++) {
+					for (let j = 0; j < n - 1; j++) {
+							if (arr[j][1] < arr[j + 1][1]) {
+									let curr = arr[j];
+									arr[j] = arr[j + 1];
+									arr[j + 1] = curr;
+							}
+							else if (arr[j][1] === arr[j + 1][1]) { // 실패율이 같다면
+									if (arr[j][0] > arr[j + 1][0]) { // 앞 스테이지 번호가 더 클 경우 
+											let big = arr[j];
+											arr[j] = arr[j + 1]; // 작은 스테이지 번호가 앞으로
+											arr[j + 1] = big;
+									}
+							}
+					}
+			}
+			
+			return arr;
+	}
+	</script>
+</body>
+</html>
