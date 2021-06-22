@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+</head>
+<body>
+	<script>
+		// 문자열 압축 복습
+		const solution = (s) => {
+			const compressionsLength = [];
+			
+			const n = s.length;
+			for (let cut = 1; cut <= parseInt(n / 2); cut++) {
+					
+					let count = 1;
+					let compression = '';
+					
+					for (let i = 0; i < n; i += cut) {
+							
+							let cuttedWord = s.substring(i, i + cut);
+							let nextCuttedWord = s.substring(i + cut, i + cut + cut);
+							
+							if (cuttedWord === nextCuttedWord) count++;
+							else {
+									if (count > 1) compression += count;
+									compression += cuttedWord;
+									count = 1;
+							}
+					}
+					
+					compressionsLength.push(compression.length);
+					
+			}
+			
+			return (s.length === 1) ? 1 : Math.min(...compressionsLength);
+	}
+	</script>
+</body>
+</html>
