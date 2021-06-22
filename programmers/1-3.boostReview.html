@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+</head>
+<body>
+	<script>
+		// 신규 아이디 추천
+		const solution = (new_id) => {
+			const recommend = new_id.toLowerCase().
+			replace(/[^a-z0-9-_.]/g, '').
+			replace(/[.]{2,}/g, '.').
+			replace(/^\.|\.$ /, '').
+			replace(/^$/, 'a'). // padEnd(1, 'a')
+			substring(0, 15).
+			replace(/\.$/, '');
+			
+			return recommend.padEnd(3, recommend[recommend.length - 1])
+	}
+	</script>
+</body>
+</html>

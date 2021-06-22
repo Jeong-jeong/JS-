@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+</head>
+<body>
+	<script>
+		// 오픈 채팅방
+		const solution = (record) => {
+    
+    const entranceSet = {
+			'Enter': '님이 들어왔습니다.',
+			'Leave': '님이 나갔습니다.'
+	}
+	
+	const setNickName = setNickNames(record);
+	
+	return record.map((str, i) => {
+			let [entrance, id, nickName] = str.split(' ');
+			if (entrance === 'Enter') {
+					return setNickName[id] + entranceSet['Enter']
+			}
+			else if (entrance === 'Leave') {
+					return setNickName[id] + entranceSet['Leave']
+			}
+	}).filter((v) => typeof v !== 'undefined');
+	
+}
+
+const setNickNames = (arr) => {
+	const setNickNames = {};
+	arr.forEach((str, index) => {
+			let [entrance, id, nickName] = str.split(' ');
+			if (entrance !== 'Leave') setNickNames[id] = nickName;
+	});
+	return setNickNames;
+}
+	</script>
+</body>
+</html>
