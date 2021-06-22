@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+</head>
+<body>
+	<script>
+		// 소수 만들기 리뷰
+		const isPrime = (n) => {
+    
+			for (let i = 2; i <= Math.sqrt(n); i++) {
+					if (n % i === 0) return false;
+			}
+			
+			return true;
+	}
+	
+	const solution = (nums) => {
+			
+			const n = nums.length;
+			let sum;
+			let answer = 0;
+			
+			for (let i = 0; i < n; i++) {
+					for (let j = i + 1; j < n; j++) {
+							for (let k = j + 1; k < n; k++) {
+									sum = nums[i] + nums[j] + nums[k];
+									isPrime(sum) && answer++ ;
+							}
+					}
+			}
+			
+			return answer;
+	}
+	</script>
+</body>
+</html>
