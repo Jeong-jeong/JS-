@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+</head>
+<body>
+	<script>
+		// 뉴스 클러스터링 리뷰
+		function solution(str1, str2) {
+    
+			const a = cutAsTwo(str1);
+			const b = cutAsTwo(str2);
+			
+			const set = new Set ([...a, ...b]);
+			
+			let intersection = 0;
+			let union = 0;
+			
+			for (let element of set) {
+					const countA = a.filter(v => v === element).length;
+					const countB = b.filter(v => v === element).length;
+					
+					intersection += Math.min(countA, countB);
+					union += Math.max(countA, countB);
+			}
+			
+			return (union === 0) ? 65536 : parseInt((intersection / union) * 65536);
+			
+	}
+	
+	const cutAsTwo = (str) => {
+			const arr = [];
+			const n = str.length;
+			const checkAlphabet = /^[a-z]*$/;
+			
+			str = str.toLowerCase();
+			
+			for (let i = 0; i < n - 1; i ++) {
+					let twoChar = str.substring(i, i + 2);
+					checkAlphabet.test(twoChar) && arr.push(twoChar);
+			}
+			
+			return arr;
+	}
+	</script>
+</body>
+</html>
