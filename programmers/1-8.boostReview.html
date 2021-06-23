@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+</head>
+<body>
+	<script>
+		// 예산 복습
+		function solution(d, budget) {
+			// 최대 몇 개의 부서 물품 지원 가능한지 return
+			const n = d.length;
+			let answer = 0;
+			let sum = 0;
+			
+			for (let i = 0; i < n; i++) { // 배열 d 오름차순 정렬
+					for (let j = i; j > 0; j--) {
+							if (d[j] < d[j - 1]) { // 앞이 뒤보다 클 때
+									let small = d[j];
+									d[j] = d[j - 1]; // 앞을 뒤로 옮겨주기
+									d[j - 1] = small;
+							}
+					}
+			}
+			
+			d.forEach(num => {
+					if (sum + num <= budget) {
+							sum += num;
+							answer++;
+					}
+			})
+			
+			return answer;
+	}
+	</script>
+</body>
+</html>
