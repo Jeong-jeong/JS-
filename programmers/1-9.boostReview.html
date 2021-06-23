@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+</head>
+<body>
+	<script>
+		// 튜플 복습
+		function solution(s) {
+    
+			const sLen = s.length;
+			const result = [];
+			let element = '';
+			let arr = [];
+					
+			for (let i = 0; i < sLen; i++) { // 배열로 변환
+					if (+s[i] === +s[i]) {
+							element += s[i]; // 숫자로 누적?
+							if (s[i + 1] === '}') {
+									arr.push([element].join().split(','));
+									element = '';
+							}
+					}
+					else if (s[i] === ',' && +s[i + 1] === +s[i + 1]) element += s[i];
+			}
+			
+			const arrLen = arr.length;
+			
+			// 길이를 기준으로 오름차순 정렬
+			for (let i = 0; i < arrLen; i++) {
+					for (let j = i; j > 0; j--) {
+							if (arr[j].length < arr[j - 1].length) { // 앞이 뒤보다 크다면
+									let big = arr[j - 1];
+									arr[j - 1] = arr[j];
+									arr[j] = big;
+							}
+					}
+			}
+			
+			for (let element of arr) {
+					for (let num of element) {
+							!result.includes(+num) && result.push(+num)
+					}
+			}
+			
+			return result;
+			
+	}
+	</script>
+</body>
+</html>
