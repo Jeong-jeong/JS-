@@ -7,45 +7,44 @@
 </head>
 <body>
 	<script>
-		// 격자판 최대합
+		// 봉우리
 		const solution = (arr) => {
-			let biggest = row = column = line1 = line2 = 0;
-
-			for (let i = 0; i < 5; i++) {
-
-				row = 0;
-				column = 0;
-
-				for (let j = 0; j < 5; j++) {
-					row += arr[i][j]// 행의 합
-					column += arr[j][i]; // 열의 합
-				}
-
-				biggest = Math.max(row, column, biggest);
-				
-			}
+			// 가장자리 초기화
+			let answer = 0;
+			const n = arr.length;
+			const reset = Array.from({length: n + 2}, () => 0);
+			grid.unshift(reset);
+			grid.push(reset);
 			
-			for (let i = 4; i >= 0; i--) { // 두 대각선 합 구하기
-
-					line1 += arr[4 - i][4 - i];
-					line2 += arr[i][i];
-
+			for (let i = 1; i < n + 1; i++) {
+				grid[i].splice(0, 0, 0);
+				grid[i].push(0)
 			}
 
-			biggest = Math.max(biggest, line1, line2);
+			for (let i = 1; i < n + 1; i++) {
+				for (let j = 1; j < n + 1; j++) {
 
-			return biggest;
+					let top = arr[i - 1][j];
+					let down = arr[i + 1][j];
+					let left = arr[i][j - 1];
+					let right = arr[i][j + 1];
+					let cur = arr[i][j];
+
+					if (cur > top && cur > down && cur > left && cur > right) answer++;
+				}
+			}
+			return answer;
 		}
 
-		const arr = [
-			[10, 13, 10, 12, 15],
-			[12, 39, 30, 23, 11],
-			[11, 25, 50, 53, 15], 
-			[19, 27, 29, 37, 27], 
-			[19, 13, 30, 13, 19]
+		const grid = [
+			[5, 3, 7, 2, 3],
+			[3, 7, 1, 6, 1],
+			[7, 2, 5, 3, 4], 
+			[4, 3, 6, 4, 1], 
+			[8, 7, 3, 5, 2]
 		];
 
-		console.log(solution(arr));
+		console.log(solution(grid));
 	</script>
 </body>
 </html>
