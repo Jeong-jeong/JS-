@@ -7,28 +7,44 @@
 </head>
 <body>
 	<script>
-		// 등수구하기
+		// 격자판 최대합
 		const solution = (arr) => {
-			const answer = [];
-			const n = arr.length;
-				for (let i = 0; i < n; i++) {
+			let biggest = row = column = line1 = line2 = 0;
 
-					let count = 1;
+			for (let i = 0; i < 5; i++) {
 
-					for (let j = 0; j < n; j++) {
+				row = 0;
+				column = 0;
 
-						if (arr[j] > arr[i]) count++;
-						
-					}
-					answer.push(count);
+				for (let j = 0; j < 5; j++) {
+					row += arr[i][j]// 행의 합
+					column += arr[j][i]; // 열의 합
 				}
+
+				biggest = Math.max(row, column, biggest);
 				
-				return answer;
+			}
 			
+			for (let i = 4; i >= 0; i--) { // 두 대각선 합 구하기
+
+					line1 += arr[4 - i][4 - i];
+					line2 += arr[i][i];
+
+			}
+
+			biggest = Math.max(biggest, line1, line2);
+
+			return biggest;
 		}
 
-		const arr= [87, 89, 92, 100, 89];
-		// result : 5, 2, 2, 1, 2
+		const arr = [
+			[10, 13, 10, 12, 15],
+			[12, 39, 30, 23, 11],
+			[11, 25, 50, 53, 15], 
+			[19, 27, 29, 37, 27], 
+			[19, 13, 30, 13, 19]
+		];
+
 		console.log(solution(arr));
 	</script>
 </body>
