@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+</head>
+<body>
+	<script>
+		// 1점인 경우
+			// 1번 문제
+			// 처음 맞을 경우
+		// 연속으로 답을 맞출 경우 누적
+		const solution = (scores) => {
+			let answer = [];
+			let count = 1;
+			for (let i = 0; i < scores.length; i++) {
+				if (scores[i] === 1) { // v가 1일 때
+					answer.push(count);
+					if (scores[i + 1] === 1) count++; // 다음 값 확인 후 누적
+					else count = 1; // 다음 값이 0일 경우 초기화
+
+				} else answer.push(0); // v가 0일 때
+			}
+			return answer.reduce((a, c) => a + c, 0);
+		}
+
+		const arr= [1, 0, 1, 1, 1, 0, 0, 1, 1, 0];
+		console.log(solution(arr));
+	</script>
+</body>
+</html>
