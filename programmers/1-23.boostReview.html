@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+</head>
+<body>
+	<script>
+		// 동전 교환
+	function solution(kind, n, change) {
+
+		let length = Number.MAX_SAFE_INTEGER;
+
+		const DFS = (L, sum) => {
+
+				if (sum > change) return;
+				if (sum === change) {
+					length = Math.min(length, L);
+				} else {
+					for (let i = 0; i < n; i++) {
+						DFS(L + 1, sum + kind[i]);
+					}
+				}
+		}
+		DFS(0, 0);
+		return length;
+
+	}
+	
+	const n = 3; // 개수
+	const kind = [1, 2, 5]; // 동전 종류
+	const change = 15; // 거스름돈
+	console.log(solution(kind, n, change));
+	
+	
+	</script>
+</body>
+</html>
