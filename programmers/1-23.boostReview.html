@@ -14,8 +14,9 @@
 
 		const DFS = (L, sum) => {
 
-				if (sum > change) return;
+				if (sum > change || L >= length) return;
 				if (sum === change) {
+					console.log(length, sum)
 					length = Math.min(length, L);
 				} else {
 					for (let i = 0; i < n; i++) {
