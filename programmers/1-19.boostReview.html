@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+</head>
+<body>
+	<script>
+		// 스킬트리
+		function solution(skill, skill_trees) {
+    
+			const arr = [];
+			const regax = new RegExp(`[^${skill}]`, 'g');
+			let answer = 0;
+			let skillLen = skill.length;
+			
+			for (let x of skill_trees) {
+					let change = x.replace(regax, '');
+					if (change === skill) answer++;
+					else {
+							let changeLen = change.length;
+							if (skill.slice(0, changeLen) === change) answer++;
+					}
+			}
+			
+			return answer;
+			
+	}
+	</script>
+</body>
+</html>
