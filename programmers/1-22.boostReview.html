@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+</head>
+<body>
+	<script>
+		// 중복순열 구하기
+	function solution(n, m) {
+
+		const answer = [];
+		let temp = [];
+
+    const DFS = (L) => {
+			
+			if (L === m) {
+				answer.push([...temp]);
+			} else {
+				for (let i = 1; i <= n; i++) { // 1 ~ n까지
+					temp[L] = i;
+					DFS(L + 1);
+				}
+			}
+		}
+		DFS(0);
+		return answer;
+
+	}
+	
+	const n = 3; // 번호
+	const m = 2; // 몇개 뽑을지
+	console.log(solution(n, m));
+	
+	
+	</script>
+</body>
+</html>
