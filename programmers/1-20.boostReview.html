@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+</head>
+<body>
+	<script>
+		// 다트게임
+		function solution(dartResult) {
+    
+			let answer = [];
+			let score = '';
+			const n = dartResult.length;
+			
+			for (let i = 0; i < n; i++) {
+					let result = dartResult[i];
+					if (+result === +result) {
+							score += result;
+					} 
+					if (result === 'S' || result === 'D' || result === 'T') { // bonus
+							answer.push(bonus(result, score))
+							score = '';
+					}
+					if (result === '*' || result === '#') { // option
+							option(answer, result);
+							score = '';
+					}
+			}
+			return answer.reduce((a, c) => a + c , 0)
+	}
+	
+	const bonus = (result, score) => {
+			score = +score;
+			
+			if (result === 'S') return Math.pow(score, 1);
+			else if (result === 'D') return Math.pow(score, 2);
+			else return Math.pow(score, 3);
+	}
+	
+	const option = (answer, result) => {
+			let curr = answer.length - 1;
+			let before = answer.length - 2;
+			
+			if (result === '*') {
+					if (curr !== 0) answer.splice(before, 1, answer[before] * 2);
+					answer.splice(curr, 1, answer[curr] * 2);
+			} else {
+					answer.splice(curr, 1, answer[curr] * (-1))
+			}
+	}
+	</script>
+</body>
+</html>
