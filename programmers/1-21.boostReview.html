@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+</head>
+<body>
+	<script>
+		// 최대점수 구하기
+		function solution(n, m, arr) {
+    
+			let answer = 0;
+
+			function DFS (index, time, score) {
+				if (time > m) return;
+				if (index === n) {
+					answer = Math.max(score, answer);
+				} else {
+					DFS(index + 1, time + arr[index][1], score + arr[index][0]);
+					DFS(index + 1, time, score);
+				}
+			}
+			DFS(0, 0, 0);
+			return answer;
+			
+
+
+	}
+	const n = 5;
+	const m = 20;
+	const arr = [[10, 5], [25, 12], [15, 8], [6, 3], [7, 4]];
+	console.log(solution(n, m, arr));
+	
+	
+	</script>
+</body>
+</html>
