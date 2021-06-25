@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+</head>
+<body>
+	<script>
+		// 비밀지도
+		function solution(n, arr1, arr2) {
+    
+			const answer = [];
+			
+			const binary = arr1.map((v, i) => {
+					return (v | arr2[i]).toString(2)
+			});
+			
+			for (let x of binary) {
+					
+					if (x.length !== n) x = x.padStart(n, '0');
+					let temp = '';
+					
+					for (let y of x) {
+							temp += (y === '1') ? '#' : ' ';
+					}
+					
+					answer.push(temp);
+			}
+			
+			return answer;
+	}
+	</script>
+</body>
+</html>
