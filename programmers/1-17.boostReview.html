@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+</head>
+<body>
+	<script>
+		// [1차] 캐시
+		function solution(cacheSize, cities) {
+    
+			let cache = [];
+			let runTime = 0;
+			
+			for (let city of cities) {
+					
+					if (cacheSize === 0) return 5 * cities.length;
+					
+					city = city.toLowerCase();
+					let cacheMiss = !cache.includes(city);
+					
+					if (cacheMiss) {
+							runTime = returnCacheMiss(city, cache, cacheSize, runTime);
+					} else {
+							runTime = returnCacheHit(city, cache, runTime);
+					}
+			}
+			
+			return runTime;
+	}
+	
+	const returnCacheHit = (city, cache, runTime) => {
+			let index = cache.indexOf(city);
+			cache.push(...cache.splice(index, 1));
+			runTime += 1;
+			return runTime;
+	}
+	
+	const returnCacheMiss = (city, cache, cacheSize, runTime) => {
+			if (cache.length === cacheSize) cache.shift();
+			cache.push(city);
+			runTime += 5;
+			return runTime;
+	}
+	</script>
+</body>
+</html>
