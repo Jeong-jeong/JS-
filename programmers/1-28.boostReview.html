@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+</head>
+<body>
+	<script>
+		// 괄호 변환
+		function solution(p) {
+			p = p.toLowerCase().split('');
+			return (p.join('')  === [...p].reverse().join('')) ? 'YES' : 'NO';
+		}
+
+
+		const p = 'goog';
+		console.log(solution(p));
+	
+	
+	</script>
+</body>
+</html>
