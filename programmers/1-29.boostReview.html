@@ -9,7 +9,14 @@
 	<script>
 		// 숫자만 추출
 		function solution(p) {
-			return +p.replace(/[^0-9]/g, '');
+			let answer = '';
+			
+			for (let v of p) {
+				if (+v === +v) answer += v
+				console.log(answer)
+			}
+
+			return +answer;
 		}
 
 		const p = 'g0en2T0s8eSoft';
