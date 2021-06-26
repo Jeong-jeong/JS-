@@ -7,25 +7,30 @@
 </head>
 <body>
 	<script>
-		// 괄호 변환
+		// 유효한 팰린드롬
 		function solution(p) {
 
-			p = p.toLowerCase();
+			let reversed = [];
+			let origin = [];
 			
-			const n = p.length - 1;
-			let reversed = '';
+			for (let i = p.length - 1; i >= 0; i--) {
 
-			for (let i = n; i >= 0; i--) {
-				reversed += p[i];
+				word = p[i].toLowerCase().replace(/[^a-z]/g, '');
+				origin.push(word);
+				let reverse = '';
+
+				for (let j = word.length - 1; j >= 0; j--) {
+					reverse += word[j];
+				}
+				reversed.push(reverse)
 			}
+
+			return (reversed.join('') === origin.reverse().join('')) ? 'YES' : 'NO';
 			
-			return (p === reversed) ? 'YES' : 'NO';
 		}
 
-
-		const p = 'gooG';
+		const p = ['found7', 'time:', 'study;', 'Yduts;', 'emit', '7Dnuof'];
 		console.log(solution(p));
-	
 	
 	</script>
 </body>
