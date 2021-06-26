@@ -7,35 +7,30 @@
 </head>
 <body>
 	<script>
-		// 가장 짧은 문자거리
-		function solution(s, t) {
+		// 문자열 압축
+		function solution(s) {
 
-			const answer = [];
-			let count = 0;
+			let answer = '';
+			let count = 1;
 
 			for (let i = 0; i < s.length; i++) {
 
-				if (s[i] === t) count = 0;
-				else count++;
+				if (s[i] === s[i + 1]) count++;
+				else {
+					answer += s[i];
+					if (count !== 1) answer += count;
+					count = 1;
+				}
 
-				answer.push(count);
 			}
-
-			for (let i = answer.length - 1; i >= 0; i--) {
-
-				if (s[i] === t) count = 0;
-				else count++;
-
-				answer[i] = Math.min(answer[i], count);
-			}
-
+		
 			return answer;
 			
+
 		}
 
-		const s = 'teachermode';
-		const t = 'e';
-		console.log(solution(s, t));
+		const s = 'KKHSSSSSSSE';
+		console.log(solution(s));
 	
 	</script>
 </body>
