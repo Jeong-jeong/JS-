@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+</head>
+<body>
+	<script>
+		// 순열 구하기
+		function solution(n, m, arr) {
+			const answer = [];
+
+			for (let i = 0; i < n; i++) { 
+				for (let j = 0; j < n; j++) {
+					(i !== j) && answer.push([arr[i], arr[j]])
+				}
+			}
+
+			return answer;
+		}
+	
+
+		const n = 3; // 개수
+		const m = 2; // 뽑는 개수
+		const arr = [3, 6, 9];
+		console.log(solution(n, m, arr));
+	
+	
+	</script>
+</body>
+</html>
