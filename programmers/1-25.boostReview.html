@@ -10,22 +10,14 @@
 		// 팩토리얼
 		function solution(n) {
 
-			let answer;
+			const DFS = (n) => {
 			
-			const DFS = (L, sum) => {
-				if (L === 0) {
-					answer = sum;
-					return;
-				}
-				else {
-					console.log(L, sum)
-					DFS(L - 1, sum * L);
-				}
+				if (n === 1) return 1;
+				else return n * DFS(n - 1); 
+
 			}
-			DFS(n, 1);
-			return answer;
-	}
-	
+			return DFS(n);
+		}
 
 		const n = 5; // 개수
 		console.log(solution(n));
