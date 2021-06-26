@@ -9,12 +9,21 @@
 	<script>
 		// 괄호 변환
 		function solution(p) {
-			p = p.toLowerCase().split('');
-			return (p.join('')  === [...p].reverse().join('')) ? 'YES' : 'NO';
+
+			p = p.toLowerCase();
+			
+			const n = p.length - 1;
+			let reversed = '';
+
+			for (let i = n; i >= 0; i--) {
+				reversed += p[i];
+			}
+			
+			return (p === reversed) ? 'YES' : 'NO';
 		}
 
 
-		const p = 'goog';
+		const p = 'gooG';
 		console.log(solution(p));
 	
 	
