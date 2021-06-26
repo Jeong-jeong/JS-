@@ -10,26 +10,13 @@
 		// 유효한 팰린드롬
 		function solution(p) {
 
-			let reversed = [];
-			let origin = [];
+			let origin = p.join('').replace(/[^a-z]/g, '');
+			let reversed = origin.split('').reverse().join('');
 			
-			for (let i = p.length - 1; i >= 0; i--) {
-
-				word = p[i].toLowerCase().replace(/[^a-z]/g, '');
-				origin.push(word);
-				let reverse = '';
-
-				for (let j = word.length - 1; j >= 0; j--) {
-					reverse += word[j];
-				}
-				reversed.push(reverse)
-			}
-
-			return (reversed.join('') === origin.reverse().join('')) ? 'YES' : 'NO';
-			
+			return (origin === reversed) ? 'YES' : 'NO';
 		}
 
-		const p = ['found7', 'time:', 'study;', 'Yduts;', 'emit', '7Dnuof'];
+		const p = ['found7'];
 		console.log(solution(p));
 	
 	</script>
