@@ -7,33 +7,36 @@
 </head>
 <body>
 	<script>
-		// 문자열 압축
+		// 자리수의 합
 		function solution(s) {
 
-			// answer[0] = sum
-			// answer[1] = 자연수
+			let max = [0, 0];
+			
+			// max[0] = sum;
+			// max[1] = num;
 
-			let answer = [0, 0];
+			for (let num of s) {
+				
+				let sum = 0, temp = num;
 
-			for (let i = 0; i < s.length; i++) {
-
-				s[i] = String(s[i]); // 문자열로 변환
-				let sum = 0;
-
-				for (let j = 0; j < s[i].length; j++) { // 각 문자열을 하나하나 탐색
-					sum += +s[i][j];
+				while (temp !== 0) {
+					sum += temp % 10;
+					temp = parseInt(temp / 10);
 				}
 
-				if (answer[0] < sum) { // 기존의 sum보다 현재 sum이 더 큰 경우
-					answer[0] = sum; 
-					answer[1] = s[i];
-			} else if (answer[0] === sum) { // sum이 같을 경우
-				answer[1] = (answer[1] > s[i]) ? answer[1] : s[i];
+				if (max[0] < sum) {
+					max[0] = sum;
+					max[1] = num;
+				} else if (max[0] === sum) {
+					max[1] = Math.max(max[1], num);
+				}
+				
 			}
+
+			return max[1];
 			
 		}
-			return answer[1];
-	}
+
 		const s = [128, 460, 603, 40, 521, 137, 123];
 		console.log(solution(s));
 	
