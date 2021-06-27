@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+</head>
+<body>
+	<script>
+		// 졸업 선물
+		function solution(budget, arr) {
+
+			// 상품 1개 반 가격으로
+			// 최대 몇명
+			// [가격, 배송비]
+			
+			const n = arr.length;
+			let answer = 0;
+
+			arr = arr.sort((a, b) => a[0] + a[1] - (b[0] + b[1]));
+
+			for (let i = 0; i < n; i++) {
+
+				let count = 1;
+				let sum = (arr[i][0] / 2) + arr[i][1];
+
+				for (let j = 0; j < n; j++) {
+
+					let [price, delivery] = arr[j];
+
+					if (i === j) continue;
+					if (sum + arr[j][0] + arr[j][1] > budget) {
+						answer = Math.max(count, answer);
+						break;
+					} else {
+						sum += price + delivery;
+						count++;
+					}
+				}
+			}
+
+			return answer;
+
+		}
+
+		const budget = 28;
+		let arr = [[6, 6], [2, 2], [4, 3], [4, 5], [10, 3]];
+		console.log(solution(budget, arr));
+	
+	</script>
+</body>
+</html>
