@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+</head>
+<body>
+	<script>
+		// 조합의 경우수 (메모이제이션)
+		function solution(n, r) {
+
+			const cache = Array.from(Array(n + 1), ()=> Array(n + 1).fill(0));
+			
+			const DFS = (n, r) => {
+				if (cache[n][r] !== 0) return cache[n][r];
+				if (r === 0 || n === r) return 1;
+				else {
+					return cache[n][r] = DFS(n - 1, r - 1) + DFS(n - 1, r);
+				}
+			}
+			return DFS(n, r)
+
+		}
+
+		const n = 5;
+		let r = 3;
+		console.log(solution(n, r));
+	
+	</script>
+</body>
+</html>
