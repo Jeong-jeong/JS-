@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+</head>
+<body>
+	<script>
+		// 문자열 압축
+		function solution(s) {
+
+			// answer[0] = sum
+			// answer[1] = 자연수
+
+			let answer = [0, 0];
+
+			for (let i = 0; i < s.length; i++) {
+
+				s[i] = String(s[i]); // 문자열로 변환
+				let sum = 0;
+
+				for (let j = 0; j < s[i].length; j++) { // 각 문자열을 하나하나 탐색
+					sum += +s[i][j];
+				}
+
+				if (answer[0] < sum) { // 기존의 sum보다 현재 sum이 더 큰 경우
+					answer[0] = sum; 
+					answer[1] = s[i];
+			} else if (answer[0] === sum) { // sum이 같을 경우
+				answer[1] = (answer[1] > s[i]) ? answer[1] : s[i];
+			}
+			
+		}
+			return answer[1];
+	}
+		const s = [128, 460, 603, 40, 521, 137, 123];
+		console.log(solution(s));
+	
+	</script>
+</body>
+</html>
