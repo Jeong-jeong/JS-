@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+</head>
+<body>
+	<script>
+		// 순열 구하기
+		function solution(arr, m) {
+
+			let combination = [];
+			let temp = [];
+			let check = Array.from({length: arr.length}, () => 0);
+
+			const DFS = (idx) => {
+				if (idx === m) {
+					combination.push([...temp]);
+				} else {
+					for (let i = 0; i < arr.length; i++) {
+						if (check[i] === 0) {
+							check[i] = 1;
+							temp[idx] = arr[i];
+							DFS(idx + 1);
+							check[i] = 0;
+						}
+					}
+				}
+			}
+			DFS(0);
+			return combination;
+
+		}
+
+		const m = 2;
+		let arr = [3, 6, 9];
+		console.log(solution(arr, m));
+	
+	</script>
+</body>
+</html>
