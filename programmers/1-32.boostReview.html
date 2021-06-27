@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+</head>
+<body>
+	<script>
+		// 멘토링
+		function solution(s) {
+
+			// 짝을 만들 수 있는 경우의 수
+
+			const n = s[0].length; // 4
+			const m = s.length; // 3
+			let answer = 0;
+
+				for (let mento = 0; mento < n; mento++) { // 0 ~ 3 (멘토)
+					for (let menti = 0; menti < n; menti++) { // 0 ~ 3 (멘티)
+						// mento, menti index가 정해진 상태.
+
+						// s를 탐색하며 indexOf로 위치 확인.
+						let mentoIdx = 0, mentiIdx = 0;
+						let check = true;
+
+						for (let i = 0; i < m; i++) { // 0 ~ 2
+							mentoIdx = s[i].indexOf(s[0][mento]);
+							mentiIdx = s[i].indexOf(s[0][menti]);
+
+							if (mentoIdx >= mentiIdx) {
+								check = false;
+								break;
+							}
+						}
+
+						if (check) answer++;
+					}
+				}
+			
+				return answer;
+
+		}
+
+
+		const s = [[3, 4, 1, 2], [4, 3, 2, 1], [3, 1, 4, 2]];
+		console.log(solution(s));
+	
+	</script>
+</body>
+</html>
