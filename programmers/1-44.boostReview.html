@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+</head>
+<body>
+	<script>
+		// [3차] 압축
+		const solution = (msg) => {
+			const dic = [];
+			const answer = [];
+	
+			//A부터 Z까지 미리 사전에 등록해 놓는다.
+			for (let i = 'A'.charCodeAt(0); i <= 'Z'.charCodeAt(0); i++) {
+					dic.push(String.fromCharCode(i));
+			}
+			
+			let i = 0;
+			const n = msg.length;
+			
+			while (i < n) {
+					
+					let j = 1;
+					while (dic.includes(msg.substring(i, i + j)) && i + j <= n) { // 사전에 없을 때까지 문자열 자르기
+							j++;
+					}
+					console.log(i, j, answer, msg.substring(i, i + j))
+					answer.push(dic.indexOf(msg.substring(i, i + j - 1)) + 1);
+					dic.push(msg.substring(i, i + j));
+					i += j - 1;
+			}
+			
+					return answer;
+			}
+		
+	
+
+		const msg = 'KAKAO';
+		console.log(solution(msg));
+	
+	</script>
+</body>
+</html>
