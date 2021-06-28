@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+</head>
+<body>
+	<script>
+		// 연속 부분수열 1 (two pointer)
+		function solution(arr, m) {
+			
+			const n = arr.length;
+			let answer = 0;
+			let p1 = 0, p2 = 0;
+			let sum = 0;
+			
+			while (p2 < n) {
+				
+				if (sum === m) {
+					answer++;
+					sum -= arr[p1++];
+				} else if (sum > m) {
+					sum -= arr[p1++];
+				} else { 
+					sum += arr[p2++];
+				}
+			}
+			return answer;
+		}
+		const m = 6;
+		const arr = [1, 2, 1, 3, 1, 1, 1, 2];
+		console.log(solution(arr, m));
+	
+	</script>
+</body>
+</html>
