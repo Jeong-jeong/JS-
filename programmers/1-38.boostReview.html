@@ -7,23 +7,23 @@
 </head>
 <body>
 	<script>
-		// 두 배열 합치기
+		// 두 배열 합치기 (투 포인터 알고리즘)
 		function solution(arr1, arr2) {
+			
+			const answer = [];
+			let p1 = p2 = 0;
 
-			const answer = [...arr1, ...arr2];
-
-			for (let i = 0; i < answer.length; i++) {
-
-				for (let j = i; j > 0; j--) {
-
-					if (answer[j] < answer[j - 1]) { // 뒤보다 앞이 크다면
-						let tmp = answer[j - 1];
-						answer[j - 1] = answer[j];  
-						answer[j] = tmp;
-					}
-
+			while (p1 !== arr1.length || p2 !== arr2.length) {
+				if (arr1[p1] <= arr2[p2]) {
+					answer.push(arr1[p1]);
+					p1++;
+				} else {
+					answer.push(arr2[p2]);
+					p2++;
 				}
+				console.log(arr1[p1] , arr2[p2])
 			}
+
 			return answer;
 		}
 
