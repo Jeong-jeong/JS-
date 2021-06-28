@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+</head>
+<body>
+	<script>
+		// 수열 추측하기
+		function solution(n, total) {
+
+			let answer = [];
+			let permutation = [];
+			let check = Array.from({length: n + 1}, () => 0);
+			const combination = [];
+			let cache = Array.from(Array(n + 1), () => Array(n + 1).fill(0)); // 조합 메모이제이션
+			let sum = 0;
+			let flag = 0;
+			
+			const setCombi = (n, r) => { // 조합 경우의 수 return
+				if (cache[n][r] > 0) return cache[n][r];
+				if (r === 0 || n === r) return 1;
+				else {
+					return cache[n][r] = setCombi(n - 1, r - 1) + setCombi(n - 1, r);
+				}
+			}
+
+			for (let i = 0; i < n; i++) { // 조합 생성
+				combination[i] = setCombi(n - 1, i);
+			}
+
+			const setP = (idx, sum) => { // 순열 생성
+				if (sum > total || flag) return;
+				if (idx === n && sum === total) {
+					answer = [...permutation];
+					flag = 1;
+					return;
+				} else {
+					for (let i = 1; i <= n; i++) { // 1 ~ n까지
+						if (check[i] === 0) {
+							check[i] = 1;
+							permutation[idx] = i;
+							setP(idx + 1, sum + (combination[idx] * permutation[idx]))
+							check[i] = 0;
+						}
+					}
+				}
+			}
+			setP(0, 0);
+			return answer;
+			
+		}
+
+		const n = 4;
+		const total = 16;
+		console.log(solution(n, total));
+	
+	</script>
+</body>
+</html>
