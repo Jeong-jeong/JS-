@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+</head>
+<body>
+	<script>
+		// n진수 게임
+		function solution(n, t, m, p) {
+			// 0 ~ 차례대로
+			let num = 0;
+			let str = '';
+			let answer = '';
+			
+			while (num <= t * m) { // t(개수) * m(인원) 만큼 문자열 만들기
+					str += num.toString(n).toUpperCase(); 
+					num++;
+			}
+			
+			
+			let i = p - 1; // i = 0부터 시작하기 때문에 1 빼주기
+			while (answer.length !== t) {
+					answer += str[i];
+					i += m;
+			}
+			
+			return answer;
+			
+	}
+
+		const n = 2;
+		const t = 4;
+		const m = 2;
+		const p = 1;
+		console.log(solution(n, t, m, p));
+	
+	</script>
+</body>
+</html>
