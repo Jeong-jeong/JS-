@@ -8,64 +8,74 @@
 <body>
 	<script>
 		// 모든 아나그램 찾기
-		const solution = (str1, str2) => {
+		const solution = (s, t) => {
 
+			const sLen = s.length;
+			const tLen = t.length; // 3
+			const tHash = setHash(t, tLen);
+			let sHash = setHash(s, tLen - 1);
 			let answer = 0;
-			const n2 = str2.length;
-			const n1 = str1.length;
+			let lt = 0;
 
-			let hash1 = setHash(str1, n2 - 1);
-			let hash2 = setHash(str2, n2);
-
-			let lt = 0; 
-			for (let rt = n2 - 1; rt < n1; rt++) { // str2의 마지막 문자부터 돌기
-
-				if (hash1.has(str1[rt])) { // 추가
-					hash1.set(str1[rt], hash1.get(str1[rt]) + 1);
+			for (let rt = tLen - 1; rt < sLen; rt++) { // sHash에 값 추가, 삭제하며 tHash와 비교
+				// 추가
+				if (sHash.has(s[rt])) {
+					sHash.set(s[rt], sHash.get(s[rt]) + 1);
 				} else {
-					hash1.set(str1[rt], 1);
+					sHash.set(s[rt], 1);
 				}
 
-				// 해쉬끼리 비교
-				if (compareMaps(hash1, hash2)) answer++;
+				// 비교
+				if (compareHash(tHash, sHash)) answer++;
 
-				// lt가 가리키는 것 빼기
-				hash1.set(str1[lt], hash1.get(str1[lt]) - 1);
-				// 뺏는데 값이 0이면 delete
-				if (hash1.get(str1[lt]) === 0) hash1.delete(str1[lt]);
+				console.log(sHash, sHash.get(s[lt]))
+				// lt가 가리키는 값 빼기
+				sHash.set(s[lt], sHash.get(s[lt]) - 1);
+				// 삭제 후 값이 0이면 delete
+				if (sHash.get(s[lt]) === 0) sHash.delete(s[lt]);
+				// lt++
 				lt++;
+
 			}
 
 			return answer;
+			
 		}
 
+		// setHash 함수 // hash 리턴
 		const setHash = (str, n) => {
+
 			const hash = new Map();
+
 			for (let i = 0; i < n; i++) {
-			if (hash.has(str[i])) hash.set(str[i], hash.get(str[i]) + 1);
-				else hash.set(str[i], 1);
+				if (hash.has(str[i])) {
+					hash.set(str[i], hash.get(str[i]) + 1);
+				}	else {
+					hash.set(str[i], 1);
+				}
 			}
+
 			return hash;
 		}
 
-		const compareMaps = (hash1, hash2) => {
-
-			if (hash2.size === hash1.size) { // 사이즈가 같을 때 
-				for (let [key, value] of hash2) {
-					if (hash1.get(key) !== value) return false;
+		// compareHash 함수 // boolean 리턴
+		const compareHash = (tHash, sHash) => {
+			if (tHash.size === sHash.size) {
+				for (let [key, value] of tHash) {
+					if (sHash.get(key) !== value) {
+						return false;
+					}
 				}
 			} else {
 				return false;
 			}
-			
 			return true;
 		}
 
-		
 	
-		const str1 = 'bacaAacba';
-		const str2 = 'abc';
-		console.log(solution(str1, str2));
+		const s = 'bacaAacba';
+		const t = 'abc';
+		console.log(solution(s, t));
 	
 	</script>
 </body>
