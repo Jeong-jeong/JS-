@@ -11,50 +11,56 @@
 		const solution = (str1, str2) => {
 
 			let answer = 0;
-			let start = '';
-			const n = str2.length; // 3
+			const n2 = str2.length;
+			const n1 = str1.length;
 
-			let hash = setHash(str2);
+			let hash1 = setHash(str1, n2 - 1);
+			let hash2 = setHash(str2, n2);
 
-			for (let i = 0; i < str1.length - n + 1; i++) {
-				// hash끼리 같은지 확인 => 반복문 또 사용?
-				let copy = new Map(hash);
-				
-				for (let j = i; j < i + str2.length; j++) {
-					if (!copy.has(str1[j]) || copy.get(str1[j]) < 0) {
-						break;
-					} else {
-						copy.set(str1[j], copy.get(str1[j]) - 1);
-					}
+			let lt = 0; 
+			for (let rt = n2 - 1; rt < n1; rt++) { // str2의 마지막 문자부터 돌기
+
+				if (hash1.has(str1[rt])) { // 추가
+					hash1.set(str1[rt], hash1.get(str1[rt]) + 1);
+				} else {
+					hash1.set(str1[rt], 1);
 				}
 
-				let check = true;
-				for (let [key, value] of copy) {
-					if (value !== 0) check = false;
-				}
+				// 해쉬끼리 비교
+				if (compareMaps(hash1, hash2)) answer++;
 
-				if (check) answer++;
-				
+				// lt가 가리키는 것 빼기
+				hash1.set(str1[lt], hash1.get(str1[lt]) - 1);
+				// 뺏는데 값이 0이면 delete
+				if (hash1.get(str1[lt]) === 0) hash1.delete(str1[lt]);
+				lt++;
 			}
 
 			return answer;
 		}
 
-		const setHash = (str) => {
-
+		const setHash = (str, n) => {
 			const hash = new Map();
-			const n = str.length;
-
-			for (let x of str) {
-				if (hash.has(x)) {
-					has.set(x, hash.get(x) + 1);
-				} else {
-					hash.set(x, 1);
-				}
+			for (let i = 0; i < n; i++) {
+			if (hash.has(str[i])) hash.set(str[i], hash.get(str[i]) + 1);
+				else hash.set(str[i], 1);
 			}
-
 			return hash;
 		}
+
+		const compareMaps = (hash1, hash2) => {
+
+			if (hash2.size === hash1.size) { // 사이즈가 같을 때 
+				for (let [key, value] of hash2) {
+					if (hash1.get(key) !== value) return false;
+				}
+			} else {
+				return false;
+			}
+			
+			return true;
+		}
+
 		
 	
 		const str1 = 'bacaAacba';
