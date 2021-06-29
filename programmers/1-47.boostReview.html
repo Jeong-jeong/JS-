@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+</head>
+<body>
+	<script>
+		// 아나그램
+		const solution = (str1, str2) => {
+
+			const hash1 = new Map();
+			const hash2 = new Map();
+			const n1 = str1.length;
+			const n2 = str1.length;
+
+			if (n1 !== n2) return 'NO';
+
+			for (let i = 0; i < n1; i++) {
+				if (hash1.has(str1[i])) {
+					hash1.set(str1[i], hash1.get(str1[i]) + 1)
+				} 
+				if (hash2.has(str2[i])) {
+					hash2.set(str2[i], hash2.get(str2[i]) + 1);
+				}
+				if (!hash1.has(str1[i])) {
+					hash1.set(str1[i], 1);
+				}
+				if (!hash2.has(str2[i])) {
+					hash2.set(str2[i], 1);
+				}
+			}
+
+			for (let [key, value] of hash1) {
+
+				if (hash2.has(key)) {
+					if (value !== hash2.get(key)) return 'NO';
+				} else {
+					return 'NO';
+				}
+			}
+			
+			return 'YES';
+		}
+		
+	
+		const str1 = 'abaCC';
+		const str2 = 'Caaab';
+		console.log(solution(str1, str2));
+	
+	</script>
+</body>
+</html>
