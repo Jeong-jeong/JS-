@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+</head>
+<body>
+	<script>
+		// 모든 아나그램 찾기
+		const solution = (str1, str2) => {
+
+			let answer = 0;
+			let start = '';
+			const n = str2.length; // 3
+
+			let hash = setHash(str2);
+
+			for (let i = 0; i < str1.length - n + 1; i++) {
+				// hash끼리 같은지 확인 => 반복문 또 사용?
+				let copy = new Map(hash);
+				
+				for (let j = i; j < i + str2.length; j++) {
+					if (!copy.has(str1[j]) || copy.get(str1[j]) < 0) {
+						break;
+					} else {
+						copy.set(str1[j], copy.get(str1[j]) - 1);
+					}
+				}
+
+				let check = true;
+				for (let [key, value] of copy) {
+					if (value !== 0) check = false;
+				}
+
+				if (check) answer++;
+				
+			}
+
+			return answer;
+		}
+
+		const setHash = (str) => {
+
+			const hash = new Map();
+			const n = str.length;
+
+			for (let x of str) {
+				if (hash.has(x)) {
+					has.set(x, hash.get(x) + 1);
+				} else {
+					hash.set(x, 1);
+				}
+			}
+
+			return hash;
+		}
+		
+	
+		const str1 = 'bacaAacba';
+		const str2 = 'abc';
+		console.log(solution(str1, str2));
+	
+	</script>
+</body>
+</html>
