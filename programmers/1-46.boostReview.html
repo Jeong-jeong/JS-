@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+</head>
+<body>
+	<script>
+		// 학급 회장 (해쉬)
+		const solution = (n, candidate) => {
+			const count = new Map();
+			let answer = ['key', 0];
+			
+			for (let x of candidate) {
+				if (count.has(x)) count.set(x, count.get(x) + 1);
+				else count.set(x, 1);
+			}
+
+			for (let [key, value] of count) {
+				if (answer[1] <= value) {
+					answer[0] = key;
+					answer[1] = value;
+				}
+			}
+
+			return answer[0];
+			
+		}
+		
+	
+		const n = 15;
+		const candidate = 'BACBACCACCBDEDE';
+		console.log(solution(n, candidate));
+	
+	</script>
+</body>
+</html>
