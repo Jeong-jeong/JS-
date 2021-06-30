@@ -7,18 +7,24 @@
 </head>
 <body>
 	<script>
-		// 올바른 괄호
+		// 올바른 괄호 (스택, 큐)
 		const solution = (s) => {
 
-			let sum = 0;
+			const stack = [];
+			const bracket = s.split('');
+			const n = bracket.length;
 
-			for (let x of s) {
-				sum += (x === '(') ? 1 : -1;
-				console.log(sum, x)
-				if (sum < 0) return 'NO';
-			}
 			
-			return (sum === 0) ? 'YES' : 'NO';
+			while (n > 0) { // n이 0이면 종료
+				let pick = bracket.shift();
+				if (pick === ')') {
+					if (stack.length) stack.pop();
+					else return 'NO';
+				}
+				else stack.push(pick);
+			}
+
+			return (stack.length) ? 'NO' : 'YES';
 			
 		}
 
