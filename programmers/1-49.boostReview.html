@@ -7,28 +7,25 @@
 </head>
 <body>
 	<script>
-		// 올바른 괄호 (스택, 큐)
+		// 괄호문자제거
 		const solution = (s) => {
 
 			const stack = [];
-			const bracket = s.split('');
-			const n = bracket.length;
-
 			
-			while (n > 0) { // n이 0이면 종료
-				let pick = bracket.shift();
-				if (pick === ')') {
-					if (stack.length) stack.pop();
-					else return 'NO';
+			for (let x of s) {
+				if (x === ')') {
+					let findIdx = stack.lastIndexOf('(');
+					while (stack[stack.length - 1] !== '(') stack.pop();
+					stack.pop();
+				} else {
+					stack.push(x);
 				}
-				else stack.push(pick);
 			}
 
-			return (stack.length) ? 'NO' : 'YES';
-			
+			return stack.join('');
 		}
 
-		const s = '(()()))';
+		const s = '(A(BC)D)EF(G(H)(IJ)K)LM(N)';
 		console.log(solution(s));
 	
 	</script>
