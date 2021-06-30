@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+</head>
+<body>
+	<script>
+		// 쇠막대기
+		const solution = (s) => {
+			// 잘려진 쇠막대기의 총 개수 구하기
+			let answer = 0;
+			const stack = [];
+
+			for (let i = 0; i < s.length; i++) {
+				
+				if (s[i] === '(') { // (일 때
+					stack.push(s[i]);
+				} else if (s[i] === ')') { // )일 때
+					if (s[i - 1] === '(') { // )이고, 직전이 (일 때 = 레이저
+						stack.pop();
+						answer += stack.length;
+					} else { // )이고 직전이 )일 때
+						stack.pop();
+						answer++;
+					}
+				}
+			}
+			
+			
+				// stack에 push
+				// answer++;
+			// 바로 직전이 (이고 현재는 )일 때
+				// stack에 pop
+				// stack의 개수 answer += stack.length;
+			// 바로직전이 )이고 현재도 )일 때
+				// stack에 pop
+			return answer;
+		}
+
+		const s = '()(((()())(())()))(())';
+		console.log(solution(s));
+	
+	</script>
+</body>
+</html>
