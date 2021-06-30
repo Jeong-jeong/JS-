@@ -11,12 +11,14 @@
 		const solution = (s) => {
 
 			const stack = [];
-			
+
 			for (let x of s) {
+
 				if (x === ')') {
+
 					let findIdx = stack.lastIndexOf('(');
-					while (stack[stack.length - 1] !== '(') stack.pop();
-					stack.pop();
+					stack.splice(findIdx);
+
 				} else {
 					stack.push(x);
 				}
