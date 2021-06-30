@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+</head>
+<body>
+	<script>
+		// 올바른 괄호
+		const solution = (s) => {
+
+			let sum = 0;
+
+			for (let x of s) {
+				sum += (x === '(') ? 1 : -1;
+				console.log(sum, x)
+				if (sum < 0) return 'NO';
+			}
+			
+			return (sum === 0) ? 'YES' : 'NO';
+			
+		}
+
+		const s = '(()()))';
+		console.log(solution(s));
+	
+	</script>
+</body>
+</html>
