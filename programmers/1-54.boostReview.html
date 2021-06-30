@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+</head>
+<body>
+	<script>
+		// 교육과정 설계
+		const solution = (important, curiculum) => {
+			
+			let condition = new RegExp(`[^${important}]`, 'g');
+			let deleted = curiculum.replace(condition, '');
+			
+			if (important === deleted) return 'YES';
+
+			if (deleted.length !== important) {
+				let compare = important.slice(0, deleted.length);
+				if (compare !== deleted) return 'NO'
+			}
+
+			return 'YES';
+		}
+
+		const important = 'CBA';
+		const curiculum = 'CBDGE';
+		console.log(solution(important, curiculum));
+	
+	</script>
+</body>
+</html>
