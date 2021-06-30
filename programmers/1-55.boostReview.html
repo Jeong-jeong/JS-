@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+</head>
+<body>
+	<script>
+		// 방금그곡
+		function solution(m, musicinfos) {
+    
+			const setMusic = {};
+			let answer = ['title', 0];
+			
+			m = replace(m);
+			
+			for (let i = 0; i < musicinfos.length; i++) {
+					
+					let info = replace(musicinfos[i]);
+					let [start, end, title, melody] = info.split(',');
+					
+					let playTime = Math.abs((+(start.slice(0, 2) - +end.slice(0, 2)) * 60)) + // 정수로 바꿔주기
+													(+end.slice(3, 5) - +start.slice(3, 5));
+					
+					let j = 0;
+					let count = 0;
+					let playMusic = '';
+					
+					while (j < playTime) { // playTime만큼 문자열 늘리기
+							playMusic += melody[count];
+							if (count === melody.length - 1) {
+									count = 0;
+							}
+							else {
+									count++;
+							}
+							j++;
+					}
+					
+					if (playMusic.includes(m)) {
+							setMusic[title] = playMusic.length;
+					}
+					
+			}
+			
+			const setMusicLen = Object.keys(setMusic).length;
+			
+			if (setMusicLen > 1) { // 답이 여러개
+					for (let key in setMusic) {
+							if (setMusic[key] > answer[1]) { // 기존 곡 길이보다 클 클 경우
+									answer[0] = key; // title 저장
+									answer[1] = setMusic[key]; // 곡 길이 저장
+							}
+					}
+					return answer[0];
+			} else if (setMusicLen === 1) {
+					for (let key in setMusic) {
+							return key;
+					}
+			} else return '(None)'
+			
+	}
+	
+	
+	const replace = (str) => {
+			
+			str = str.replace(/C#/g, 'c');
+			str = str.replace(/D#/g, 'd');
+			str = str.replace(/F#/g, 'f');
+			str = str.replace(/G#/g, 'g');
+			str = str.replace(/A#/g, 'a');
+			str = str.replace(/E#/g, 'e');
+			
+			return str;
+	}
+
+		const m = 'ABCDEFG';
+		const musicinfos = ["12:00,12:14,HELLO,CDEFGAB", "13:00,13:05,WORLD,ABCDEF"];
+		console.log(solution(m, musicinfos));
+	
+	</script>
+</body>
+</html>
