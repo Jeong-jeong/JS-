@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+</head>
+<body>
+	<script>
+		// 공주 구하기
+		const solution = (n, k) => {
+			// 오름차순 (1부터 시작)
+			// 
+			const quaue = [];
+
+			for (let i = 1; i <= n; i++) { // quaue 생성
+				quaue.push(i);
+			}
+			
+			let count = 0;
+			while (quaue.length > 1) { // 한명이 남으면 종료
+				
+				let pick = quaue.shift();
+				count++;
+				
+				if (count !== k) quaue.push(pick);
+				else count = 0; // count === k이면 뽑고 버려짐.
+				console.log(pick, count, quaue)
+			}
+
+			return quaue[0];
+		}
+
+		const n = 8;
+		const k = 3;
+		console.log(solution(n, k));
+	
+	</script>
+</body>
+</html>
