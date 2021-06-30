@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+</head>
+<body>
+	<script>
+		// 후위식 연산(스택, 큐)
+		const solution = (s) => {
+			
+			const stack = [];
+
+			for (let x of s) {
+
+				if (+x === +x) { // 숫자일 때
+					stack.push(+x);
+				} else { // 연산자일 때
+					let after = stack.pop();
+					let before = stack.pop();
+					stack.push(eval(`${before}${x}${after}`));
+				}
+				
+			}
+			
+			return stack[0];
+		}
+
+		const s = '352+*9-';
+		console.log(solution(s));
+	
+	</script>
+</body>
+</html>
