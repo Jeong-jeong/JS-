@@ -11,18 +11,26 @@
 		function solution(n, m) {
 
 			// n C m
-			// cache 필요
-			let cache = Array.from(Array(n + 1), () => Array(n + 1).fill(0));
+			const answer = [];
+			let temp = [];
+			let check = Array.from({length: n + 1}, () => 0);
 
-			const combi = (n, r) => {
-				if (cache[n][r] > 0) return cache[n][r];
-				if (r === 0 || n === r) {
-					return 1;
+			const combi = (idx) => {
+				if (idx === m) {
+					answer.push([...temp]);
 				} else {
-					return cache[n][r] = combi(n - 1, r - 1) + combi(n - 1, r);
+					for (let i = 1; i <= n; i++) {
+						if (check[i] === 0) {
+							check[i] = 1;
+							temp[idx] = i;
+							combi(idx + 1);
+							if (temp[0] !== i) check[i] = 0;
+						}
+					}
 				}
 			}
-			return combi(n, m);
+			combi(0);
+			return answer;
 			
 		}
 
