@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+</head>
+<body>
+	<script>
+		// 선택 정렬
+		function solution(arr) {
+
+			// 순회 시마다 가장 작은 요소의 인덱스를 저장
+			// 순회 끝난 후 i와 작은 인덱스 교환
+			for (let i = 0; i < arr.length - 1; i++) {
+				let small = i;
+
+				for (let j = i + 1; j < arr.length; j++) {
+					if (arr[j] < arr[small]) small = j;
+				}
+				[arr[i], arr[small]] = [arr[small], arr[i]];
+			}
+
+			return arr;
+	}
+		const arr = [13, 5, 11, 7, 23, 15];
+		console.log(solution(arr));
+	
+	</script>
+</body>
+</html>
