@@ -7,26 +7,21 @@
 </head>
 <body>
 	<script>
-		// 버블 정렬
+		// 삽입정렬
 		function solution(arr) {
-
-			for (let i = 0; i < arr.length - 1; i++) {
-
-				let swap;
-
-				for (let j = 0; j < arr.length - 1; j++) {
-					if (arr[j] > arr[j + 1]) {
-						swap = arr[j];
-						arr[j] = arr[j + 1];
-						arr[j + 1] = swap;
-					}
+			// i와 j의 가장 작은 요소를 비교해 변수에 넣음
+			for (let i = 0; i < arr.length; i++) {
+				let small = i;
+				for (let j = i; j < arr.length; j++) {
+					if (arr[j] < arr[small]) small = j;
+					// i로 돌 때 가장 작은 요소의 인덱스를 넣음
 				}
-				if (!swap) break;
+				[arr[i], arr[small]] = [arr[small], arr[i]];
 			}
-
 			return arr;
+			
 	}
-		const arr = [13, 5, 11, 7, 23, 15];
+		const arr = [11, 7, 5, 6, 10, 9];
 		console.log(solution(arr));
 	
 	</script>
