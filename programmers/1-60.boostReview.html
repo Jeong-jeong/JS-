@@ -7,32 +7,27 @@
 </head>
 <body>
 	<script>
-		// 조합 구하기 (뽑는 방법의 수)
+		// 조합 구하기 (경우의 수 x)
 		function solution(n, m) {
 
 			// n C m
 			const answer = [];
 			let temp = [];
-			let check = Array.from({length: n + 1}, () => 0);
 
-			const combi = (idx) => {
+			const combi = (idx, s) => {
 				if (idx === m) {
 					answer.push([...temp]);
 				} else {
-					for (let i = 1; i <= n; i++) {
-						if (check[i] === 0) {
-							check[i] = 1;
-							temp[idx] = i;
-							combi(idx + 1);
-							if (temp[0] !== i) check[i] = 0;
-						}
+					for (let i = s; i <= n; i++) {
+						temp[idx] = i;
+						combi(idx + 1, i + 1);
 					}
 				}
 			}
-			combi(0);
+			combi(0, 1);
 			return answer;
-			
 		}
+			
 
 
 		const n = 4;
