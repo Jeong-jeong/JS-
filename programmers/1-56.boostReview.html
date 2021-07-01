@@ -7,18 +7,21 @@
 </head>
 <body>
 	<script>
-		// 선택 정렬
+		// 버블 정렬
 		function solution(arr) {
 
-			// 순회 시마다 가장 작은 요소의 인덱스를 저장
-			// 순회 끝난 후 i와 작은 인덱스 교환
 			for (let i = 0; i < arr.length - 1; i++) {
-				let small = i;
 
-				for (let j = i + 1; j < arr.length; j++) {
-					if (arr[j] < arr[small]) small = j;
+				let swap;
+
+				for (let j = 0; j < arr.length - 1; j++) {
+					if (arr[j] > arr[j + 1]) {
+						swap = arr[j];
+						arr[j] = arr[j + 1];
+						arr[j + 1] = swap;
+					}
 				}
-				[arr[i], arr[small]] = [arr[small], arr[i]];
+				if (!swap) break;
 			}
 
 			return arr;
