@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+</head>
+<body>
+	<script>
+		// 수들의 조합
+		function solution(arr, k, m) {
+			let answer = 0;
+			let temp = [];
+			
+			const combi = (L, idx) => {
+				if (L === k) {
+					// 조합의 합이 m의 배수인 개수
+					let sum = [...temp].reduce((a, c) => a + c, 0);
+					if (sum % m === 0) answer++;
+					
+				} else { // 조합 구하기
+					for (let i = idx; i < arr.length; i++) {
+						temp[L] = arr[i];
+						combi(L + 1, i + 1);
+					}
+				}
+			}
+			combi(0, 0);
+			// (깊이, i)
+			return answer;
+		}
+
+		const k = 3; // 뽑는 숫자
+		const m = 6; // m의 배수
+		const arr = [2, 4, 5, 8, 12];
+		console.log(solution(arr, k, m));
+	
+	</script>
+</body>
+</html>
