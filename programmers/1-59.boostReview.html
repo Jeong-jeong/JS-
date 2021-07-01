@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+</head>
+<body>
+	<script>
+		// 장난꾸러기 현수
+		function solution(arr) {
+			const answer = [];
+			const origin = [...arr].sort((a, b) => a - b);
+			
+			arr.forEach((v, i) => {
+				console.log(v, origin[i])
+				if (v !== origin[i]) answer.push(i + 1);
+			})
+
+			return answer;
+	}
+		const arr = [120, 130, 150, 150, 130, 150];
+		console.log(solution(arr));
+	
+	</script>
+</body>
+</html>
