@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+</head>
+<body>
+	<script>
+		// 카카오 캐시 문제 변형
+		function solution(s, arr) {
+			
+			let cache = [];
+			
+			arr.forEach((v, i) => {
+				if (!cache.includes(v)) { // 캐시에 없을 때
+					if (cache.length < s) cache.unshift(v);
+					else { // 캐시가 꽉 찼을 때 (cache miss)
+							// 1 ~ n -1 까지 뒤로 한칸씩 밀기
+							// 맨 앞에 v 넣기
+							for (let i = s - 1; i > 0 ; i--) {
+								cache[i] = cache[i - 1];
+							}
+							cache[0] = v;
+					}
+				} else { // 캐시에 있을 때
+					// 꽉 차든 차지 않았든 cache hit
+					let idx = cache.indexOf(v);
+					for (let i = idx; i >= 1; i--) {
+						cache[i] = cache[i - 1];
+					}
+					cache[0] = v;
+				}
+			})
+
+			return cache;
+	}
+		const s = 5;
+		const arr = [1, 2, 3, 2, 6, 2, 3, 5, 7];
+		console.log(solution(s, arr));
+	
+	</script>
+</body>
+</html>
