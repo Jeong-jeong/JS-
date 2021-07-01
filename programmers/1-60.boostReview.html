@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+</head>
+<body>
+	<script>
+		// 조합 구하기 (뽑는 방법의 수)
+		function solution(n, m) {
+
+			// n C m
+			// cache 필요
+			let cache = Array.from(Array(n + 1), () => Array(n + 1).fill(0));
+
+			const combi = (n, r) => {
+				if (cache[n][r] > 0) return cache[n][r];
+				if (r === 0 || n === r) {
+					return 1;
+				} else {
+					return cache[n][r] = combi(n - 1, r - 1) + combi(n - 1, r);
+				}
+			}
+			return combi(n, m);
+			
+		}
+
+
+		const n = 4;
+		const m = 2;
+		console.log(solution(n, m));
+	
+	</script>
+</body>
+</html>
