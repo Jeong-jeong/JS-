@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+</head>
+<body>
+	<script>
+		// 뮤직비디오 (결정 알고리즘)
+		function solution(arr, m) {
+			// DVD의 크기를 최소로, 모두 같게
+			
+			let min = arr[arr.length - 1]; // 9
+			let max = arr.reduce((a, c) => a + c, 0); // 45
+			
+			while (min <= max) {
+				
+				let half = parseInt((min + max) / 2); // 23
+				let count = countDVD(arr, half);
+
+				if (count > m) { // DVD 용량이 작으므로 늘려야 함
+					min = half + 1;
+				} else { // DVD 용량이 크므로 줄여야 함
+					max = half - 1;
+				}
+			}
+
+			return min;
+			
+		}
+
+		const countDVD = (arr, half) => {
+
+			let sum = 0;
+			let count = 1;
+
+			for (let i = 1; i <= arr.length; i++) {
+				// ⭐️ 주의: 현재 i를 더했을 때 기준을 초과할 경우 i를 더하지 않고 초기화 (i + 1이 아님)
+					if (sum + i > half) {
+						sum = i;
+						count++;
+					} else sum += i;
+					if (count > m) break;
+			}
+
+			return count;
+		}
+		const m = 3; // DVD를 3개의 묶음으로 나눠야 함.
+		const arr = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+		console.log(solution(arr, m));
+	
+	</script>
+</body>
+</html>
