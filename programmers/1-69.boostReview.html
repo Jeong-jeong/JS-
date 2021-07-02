@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+</head>
+<body>
+	<script>
+		// 마구간 정하기 (결정 알고리즘)
+		function solution(horses, arr) {
+
+			arr.sort((a, b) => a - b);
+
+			let answer = 0;
+			let min = arr[1] - arr[0];
+			let max = arr[arr.length - 1] - arr[0];
+
+			
+			while (min <= max) {
+				
+				let distance = parseInt((min + max) / 2); // 중간 값
+
+				let countHorses = count(arr, distance);
+				
+				if (countHorses < horses) { // 최대 거리가 너무 기므로 max를 줄여야 함
+					max = distance - 1;
+				} else {
+					if (countHorses === horses) answer = Math.max(answer, distance);
+					min = distance + 1;
+				}
+			}
+			
+			return answer;	
+		}
+
+		const count = (arr, distance) => {
+
+			let put = arr[0];
+			let count = 1;
+
+			arr.forEach((v, i) => {
+				if (v - put >= distance) { 
+					count++;
+					put = arr[i];
+				}
+			})
+			return count;
+		}
+
+		const horses = 3; // 마구간에 배치할 말들
+		const arr = [1, 2, 8, 4, 9]; // 좌표
+		console.log(solution(horses, arr));
+	
+	</script>
+</body>
+</html>
