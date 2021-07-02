@@ -10,26 +10,30 @@
 		// 결혼식
 		function solution(coordinate) {
 			// 동시에 존재하는 최대 인원수
-				coordinate.sort((a, b) => {
-					if (a[1] === b[1]) return a[0] - b[0];
-					else return a[1] - b[1];
+
+				let time = [];
+				let count = 0;
+				let answer = 0;
+
+				coordinate.forEach( v => {
+					time.push([v[0], 's']);
+					time.push([v[1], 'e']);
+				})
+				
+				time.sort((a, b) => {
+					if (a[0] === b[0]) {
+						if (a[1] > b[1]) return 1; // s가 e보다 크므로 뒤로 보냄
+						else if (a[1] < b[1]) return -1;
+					}
+					else return a[0] - b[0];
 				})
 
-				let answer = 0;
-				let count = 0;
-				let standard = coordinate[0];
+				time.forEach((v) => {
 
-				coordinate.forEach((v, i) => {
+					let [time, existence] = v;
 
-					let [arrive, leave] = v;
-
-					if (arrive >= standard[0] && arrive < standard[1]) {
-						count++;
-					} else {
-						answer = Math.max(count, answer);
-						count = 1;
-						standard = v;
-					}
+					count += (existence === 's') ? 1 : -1;
+					answer = Math.max(count, answer);
 				})
 
 				return answer;
