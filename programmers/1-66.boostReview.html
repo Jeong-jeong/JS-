@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+</head>
+<body>
+	<script>
+		// 결혼식
+		function solution(coordinate) {
+			// 동시에 존재하는 최대 인원수
+				coordinate.sort((a, b) => {
+					if (a[1] === b[1]) return a[0] - b[0];
+					else return a[1] - b[1];
+				})
+
+				let answer = 0;
+				let count = 0;
+				let standard = coordinate[0];
+
+				coordinate.forEach((v, i) => {
+
+					let [arrive, leave] = v;
+
+					if (arrive >= standard[0] && arrive < standard[1]) {
+						count++;
+					} else {
+						answer = Math.max(count, answer);
+						count = 1;
+						standard = v;
+					}
+				})
+
+				return answer;
+			
+		}
+
+		const coordinate = [[14, 18], [12, 15], [15, 20], [20, 30], [5, 14]];
+		console.log(solution(coordinate));
+	
+	</script>
+</body>
+</html>
