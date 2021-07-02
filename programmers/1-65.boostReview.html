@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+</head>
+<body>
+	<script>
+		// 회의실 배정(그리디)
+		function solution(coordinate) {
+
+			coordinate.sort((a, b) => {
+				if (a[1] === b[1]) return a[0] - b[0];
+				else return a[1] - b[1];
+			})
+
+			let set = [0, 0]; // start, end
+			let count = 0;
+			// start가 set[1] 보다 같거나 클 때
+				// set[0] = start, set[1] = end로 설정
+			coordinate.forEach((v, i) => {
+
+				let [start, end] = v;
+
+				if (start >= set[1]) {
+					set[0] = start;
+					set[1] = end;
+					count++;
+				}
+			})
+
+			return count;
+		}
+
+		//const coordinate = [[1, 4], [2, 3], [3, 5], [4, 6], [5, 7]];
+		const coordinate = [[3, 3], [1, 3], [2, 3], [3, 3]];
+		console.log(solution(coordinate));
+	
+	</script>
+</body>
+</html>
