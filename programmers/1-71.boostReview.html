@@ -7,8 +7,33 @@
 </head>
 <body>
 	<script>
-		// 부스트캠프 2차 코테날
-		// 더 열심히 해야겠다 ... 많이 부족한 실력이라는 걸 느꼈다.
+		// 간단히 조합 복습
+		function solution(arr, k, m) {
+			let answer = 0;
+			let temp = [];
+			
+			const combi = (L, idx, sum) => {
+				if (L === k) {
+					// 조합의 합이 m의 배수인 개수
+					if (sum % m === 0) answer++;
+					
+				} else { // 조합 구하기
+					for (let i = idx; i < arr.length; i++) {
+						temp[L] = arr[i];
+						combi(L + 1, i + 1, sum + arr[i]);
+					}
+				}
+			}
+			combi(0, 0, 0);
+			// (깊이, i)
+			return answer;
+		}
+
+		const k = 3; // 뽑는 숫자
+		const m = 6; // m의 배수
+		const arr = [2, 4, 5, 8, 12];
+		console.log(solution(arr, k, m));
+		
 			
 	
 	</script>
