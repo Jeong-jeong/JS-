@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+</head>
+<body>
+	<script>
+		// 미로 탐색(DFS)
+		function solution(arr) {
+			// 1이 벽, 0은 통로
+			// 그래프 + DFS
+			let answer = 0;
+
+			// 위, 오른쪽, 아래, 왼쪽
+			const row = [-1, 0, 1, 0];
+			const column = [0, 1, 0, -1];
+			
+			const DFS = (x, y) => {
+				if (x === 6 && y === 6) {
+					answer++;
+				} else {
+					for (let i = 0; i < row.length; i++) { // 0 ~ 3
+
+						let nextX = x + row[i];
+						let nextY = y + column[i];
+
+						if ( nextX >= 0 && nextX < 7 &&
+								nextY >= 0 && nextY < 7) {
+									
+									if (arr[nextX][nextY] === 0) {
+										arr[nextX][nextY] = 1;
+										DFS(nextX, nextY);
+										arr[nextX][nextY] = 0;
+									}
+						}
+					}
+				}
+			}
+			arr[0][0] = 1;
+			DFS(0, 0); // 좌표 0, 0에서 시작
+			return answer;
+			
+			
+	}
+
+		const arr = [
+		[0, 0, 0, 0, 0, 0, 0],
+		[0, 1, 1, 1, 1, 1, 0],
+		[0, 0, 0, 1, 0, 0, 0],
+		[1, 1, 0, 1, 0, 1, 1],
+		[1, 1, 0, 0, 0, 0, 1],
+		[1, 1, 0, 1, 1, 0, 0],
+		[1, 0, 0, 0, 0, 0, 0],
+		];
+		console.log(solution(arr));
+		
+			
+	
+	</script>
+</body>
+</html>
