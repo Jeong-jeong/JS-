@@ -7,35 +7,42 @@
 </head>
 <body>
 	<script>
-		// 경로 탐색 (인접행렬)
+		// 경로 탐색 (인접리스트)
 		function solution(n, m, arr) {
 			// 모든 경로의 가지수 출력
 			// 방향 그래프
-			const graph = Array.from(Array(n + 1), () => Array(n + 1));
-			const check = Array.from({length: n + 1}, () => 0);
+			const graph = Array.from(Array(n + 1), () => Array());
+			let check = Array.from({length: n + 1}, () => 0);
 			let answer = 0;
-			let start = 1;
-			
-			arr.forEach( v => {
-				graph[v[0]][v[1]] = 1;
-			});
+
+			for (let [a, b] of arr) { // 인접리스트 생성
+				graph[a].push(b);
+			}
+			let temp = [1];
 
 			const DFS = (L) => {
 				if (L === n) {
+					console.log(temp)
 					answer++;
 				}
 				else {
-					for (let i = start; i <= n; i++) {
-						if (check[i] === 0 && graph[L][i] === 1) {
-							check[i] = 1;
-							DFS(i);
-							check[i] = 0;
+					for (let i = 0; i < graph[L].length; i++) {
+
+						if (check[graph[L][i]] === 0) {
+
+							check[graph[L][i]] = 1;
+							temp.push(graph[L][i]);
+							DFS(graph[L][i]);
+							
+							check[graph[L][i]] = 0;
+							temp.pop();
 						}
 					}
 				}
 			}
+
 			check[1] = 1;
-			DFS(start)
+			DFS(1)
 			return answer;
 			
 	}
