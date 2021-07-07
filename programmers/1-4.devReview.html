@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+</head>
+<body>
+	<script>
+		// [프로그래머스] 폰켓몬
+		function solution(nums) {
+    
+			const unique = new Set(nums).size;
+			const half = nums.length / 2;
+			
+			return (unique > half) ? half : unique;
+	}
+
+		const nums = [3, 1, 2, 3];
+		
+		console.log(solution(nums));
+		
+			
+	
+	</script>
+</body>
+</html>
