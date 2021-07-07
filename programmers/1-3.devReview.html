@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+</head>
+<body>
+	<script>
+		// [프로그래머스] 로또의 최고순위와 최저순위
+		function solution(lottos, win_nums) {
+    
+			// [최고 순위, 최저 순위] return
+			
+			const rank = { // 맞춘 횟수 , 순위
+					6: 1,
+					5: 2,
+					4: 3,
+					3: 4,
+					2: 5,
+					1: 6,
+					0: 6
+			};
+			
+			let least = 0;
+			let countZero = 0;
+			
+			lottos.forEach((v, i) => {
+					least += (win_nums.includes(v)) ? 1 : 0;
+					countZero += (lottos[i] === 0) ? 1 : 0;
+			})
+			
+			const most = least + countZero;
+			
+			return [rank[most], rank[least]]
+			
+	}
+
+		const lottos = [44, 1, 0, 0, 31, 25];
+		const win_nums = [31, 10, 45, 1, 6, 19];
+		
+		console.log(solution(lottos, win_nums));
+		
+			
+	
+	</script>
+</body>
+</html>
