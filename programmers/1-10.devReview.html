@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+</head>
+<body>
+	<script>
+		// [프로그래머스] 오픈채팅방
+		function solution(record) {
+    
+			const entrance = {
+					'Enter': '님이 들어왔습니다.',
+					'Leave': '님이 나갔습니다.'
+			};
+			
+			const userInfo = {};
+			const result = [];
+			
+			record.forEach(v => { // userId, nickName 저장
+					
+					const [access, userId, nickName] = v.split(' ');
+					
+					if (access !== 'Leave') {
+							userInfo[userId] = nickName;
+					}
+			})
+			
+			record.forEach(v => {
+					
+					const [access, userId, nickName] = v.split(' ');
+					
+					if (access !== 'Change') {
+							result.push(userInfo[userId] + entrance[access]);
+					}
+			})
+			
+			return result;
+	}
+	
+		const record = ["Enter uid1234 Muzi", "Enter uid4567 Prodo","Leave uid1234","Enter uid1234 Prodo","Change uid4567 Ryan"];
+		
+		console.log(solution(record));
+		
+			
+	
+	</script>
+</body>
+</html>
