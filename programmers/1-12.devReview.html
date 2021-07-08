@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+</head>
+<body>
+	<script>
+		// [프로그래머스] 약수의 개수와 덧셈
+		function solution(left, right) {
+    
+			let result = 0;
+			
+			for (let n = left; n <= right; n++) {
+					
+					const len = divisors(n).length;
+					
+					result += (len % 2 === 0) ? n : -n;
+			}
+			
+			return result;
+	}
+	
+	const divisors = (n) => {
+			
+			const arr = [];
+			
+			arr.push(1);
+			
+			for (let divisor = 2; divisor <= parseInt(n / 2); divisor++) {
+					if (n % divisor === 0) arr.push(divisor);
+			}
+			
+			arr.push(n);
+			
+			return (n === 1) ? [1] : arr;
+	}
+	
+		const left = 13;
+		const right = 17;
+		
+		console.log(solution(left, right));
+		
+			
+	
+	</script>
+</body>
+</html>
