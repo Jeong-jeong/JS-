@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+</head>
+<body>
+	<script>
+		// [프로그래머스] 음양 더하기
+		function solution(absolutes, signs) {
+    
+			let result = 0;
+			
+			absolutes.forEach((num, i) => {
+					result += (signs[i]) ? num : -num;
+			})
+			
+			return result;
+	}
+	
+		const absolutes = [4, 7, 12];
+		const signs = [true, false, true];
+		
+		console.log(solution(absolutes, signs));
+		
+			
+	
+	</script>
+</body>
+</html>
