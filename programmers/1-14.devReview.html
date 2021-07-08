@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+</head>
+<body>
+	<script>
+		// [프로그래머스] 3진법 뒤집기
+		function solution(n) {
+    
+			const three = n.toString(3).split('').reverse().join('');
+			return Number.parseInt(three, 3);
+			
+	}
+	
+		const n = 45;
+		
+		console.log(solution(n));
+		
+			
+	
+	</script>
+</body>
+</html>
