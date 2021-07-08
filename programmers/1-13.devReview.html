@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+</head>
+<body>
+	<script>
+		// [프로그래머스] 예산
+		function solution(d, budget) {
+    
+			d = d.sort((a, b) => a - b);
+			
+			let answer = 0;
+			let sum = 0;
+			
+			for (let n of d) {
+					if ((n + sum) > budget) {
+							break;
+					} else {
+							sum += n;
+							answer++;
+					}
+			}
+			
+			return answer;
+	}
+	
+		const d = [1,3,2,5,4];
+		const budget = 9;
+		
+		console.log(solution(d, budget));
+		
+			
+	
+	</script>
+</body>
+</html>
