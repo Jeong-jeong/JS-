@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+</head>
+<body>
+	<script>
+		// [프로그래머스] 문자열 압축
+		function solution(s) {
+    
+			// 완전탐색
+			let result = s.length;
+			
+			for (let cut = 1; cut <= parseInt(s.length / 2); cut++) {
+					
+					let count = 1;
+					let temp = '';
+					
+					for (let i = 0; i < s.length; i += cut) { // cut만큼 증가
+							const cur = s.slice(i, i + cut);
+							const next = s.slice(i + cut, i + cut + cut);
+							if (cur === next) {
+									count++;
+							} else {
+									if (count > 1) temp += count;
+									temp += cur;
+									count = 1;
+							}
+					}
+					
+					result = (result > temp.length) ? temp.length : result;
+			}
+			
+			return result;
+	}
+	
+		const s = 'abcabcabcabcdededededede';
+		
+		console.log(solution(s));
+		
+			
+	
+	</script>
+</body>
+</html>
