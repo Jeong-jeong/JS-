@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+</head>
+<body>
+	<script>
+		// [프로그래머스] 소수 만들기
+		function solution(nums) {
+			// 4C3
+			const temp = [];
+			const sumCombi = [];
+			let result = 0;
+			setCombi(nums, sumCombi, temp, 0);
+			
+			for (let sum of sumCombi) {
+					if (isPrime(sum)) result++;
+			}
+			
+			return result;
+	}
+	
+	const setCombi = (arr, combi, temp, L) => { // 조합 구하기
+			
+			if (L === 3) {
+					const sum = [...temp].reduce((a, c) => a + c, 0);
+					combi.push(sum);
+			} else {
+					for (let i = 0; i < arr.length; i++) {
+							temp[L] = arr[i];
+							setCombi(arr.slice(i + 1), combi, temp, L + 1);
+					}
+			}
+			
+			return combi;
+	}
+	
+	const isPrime = (n) => {
+			for (let i = 2; i <= Math.sqrt(n); i++) {
+					if (n % i === 0) return false;
+			}
+			return true;
+	}
+	
+		const nums = [1, 2, 3, 4];
+		
+		console.log(solution(nums));
+		
+			
+	
+	</script>
+</body>
+</html>
