@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+</head>
+<body>
+	<script>
+		// [프로그래머스] 튜플
+		function solution(s) {
+    
+			const result = [];
+			const subsets = [];
+			let tempSubset = '';
+			
+			for (let i = 0; i < s.length; i++) {
+					
+					if (+s[i] === +s[i]) tempSubset += s[i];
+					if (s[i] === ',' && +s[i + 1] === +s[i + 1]) {
+							tempSubset += s[i];
+					} 
+					if (s[i] === '}') {
+							if (tempSubset !== '') subsets.push(tempSubset.split().join(',').split(','));
+							tempSubset = '';
+					}
+			}
+			
+			subsets.sort((a, b) => { return a.length - b.length });
+			
+			for (let subset of subsets) {
+					
+					for (let e of subset) {
+							e = +e;
+							if (!result.includes(e)) result.push(e); 
+					}
+			}
+			
+			return result;
+	}
+	
+		const s = "{{4,2,3},{3},{2,3,4,1},{2,3}}";
+		
+		console.log(solution(s));
+		
+			
+	
+	</script>
+</body>
+</html>
