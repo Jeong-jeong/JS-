@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+</head>
+<body>
+	<script>
+		// [프로그래머스] 실패율
+		function solution(N, stages) {
+
+			const result = [];
+			const failureRates = [];
+			let arrive = stages.length;
+			
+			for (let i = 1; i <= N; i++) { // 실패율 저장
+					const notClear = stages.filter(v => v === i).length;
+					failureRates.push([i, notClear / arrive]);
+					arrive -= notClear;
+			}
+			
+			failureRates.sort((a, b) => {
+					if (a[1] === b[1]) return a[0] - b[0];
+					else return b[1] - a[1];
+			})
+			
+			for (let [stage, failure] of failureRates) {
+					result.push(stage)
+			}
+			
+			return result;
+		}
+	
+		const N = 5;
+		const stages = [2, 1, 2, 6, 2, 4, 3, 3];
+		
+		console.log(solution(N, stages));
+		
+			
+	
+	</script>
+</body>
+</html>
