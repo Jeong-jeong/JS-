@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+</head>
+<body>
+	<script>
+		// [프로그래머스] 스킬트리
+		function solution(skill, skill_trees) {
+    
+			const condi = new RegExp(`[^${skill}]`, 'g');
+			let answer = 0;
+			
+			skill_trees.forEach( v => {
+					const tree = v.replace(condi, '');
+					if (tree === skill) answer++;
+					else {
+							const cut = skill.slice(0, tree.length);
+							if (tree === cut) answer++;
+					}
+			})
+			
+			return answer;
+	}
+	
+		const skill = 'CBD';
+		const skill_trees = ["BACDE", "CBADF", "AECB", "BDA"];
+		
+		console.log(solution(skill, skill_trees));
+		
+			
+	
+	</script>
+</body>
+</html>
