@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+</head>
+<body>
+	<script>
+		// [프로그래머스] 이진 변환 반복하기
+		function solution(s) {
+    
+			let sumZero = 0;
+			let turn = 0;
+			
+			if (s === '1') return [1, 0];
+			
+			while (s !== '1') {
+					
+					turn++;
+					
+					let countZero = 0;
+					let countOne = 0;
+					
+					for (let i = 0; i < s.length; i++) {
+							if (s[i] === '0') countZero++;
+							else countOne++;
+					}
+					sumZero += countZero;
+					s = countOne.toString(2);
+			}
+			
+			return [turn, sumZero];
+			
+		}
+	
+		const s = '01110';
+		
+		console.log(solution(s));
+		
+			
+	
+	</script>
+</body>
+</html>
