@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+</head>
+<body>
+	<script>
+		// [프로그래머스] 삼각 달팽이
+		function solution(n) {
+    
+			let num = 0;
+			let x = -1, y = 0;
+			
+			const triangle = new Array(n).fill().map((_, i) => new Array(i + 1));
+	
+			
+			while (n > 0) {
+					
+			for (let i = 0; i < n; i++) triangle[++x][y] = ++num;
+			for (let i = 0; i < n - 1; i++) triangle[x][++y] = ++num;
+			for (let i = 0; i < n - 2; i++) triangle[--x][--y] = ++num;
+			n -= 3;
+			}
+			
+			return triangle.flatMap(e => e);
+		}
+	
+		const n = 4;
+		
+		console.log(solution(n));
+		
+			
+	
+	</script>
+</body>
+</html>
