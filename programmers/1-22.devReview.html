@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+</head>
+<body>
+	<script>
+		// [프로그래머스] 영어 끝말잇기
+		function solution(n, words) {
+    
+			const used = [words[0]];
+			
+			for (let i = 1; i < words.length; i++) {
+					const word = words[i];
+					const before = words[i - 1];
+					const number = (i % n) + 1;
+					const order = parseInt(i / n) + 1;
+					
+					if (used.includes(word) ||
+						 before[before.length - 1] !== word[0]) {
+							return [number, order];
+					} else used.push(word)
+			}
+			
+			return [0, 0]
+			
+	}
+	
+		const n = 3;
+		const words = ["tank", "kick", "know", "wheel", "land", "dream", "mother", "robot", "tank"];
+		
+		console.log(solution(n, words));
+		
+			
+	
+	</script>
+</body>
+</html>
