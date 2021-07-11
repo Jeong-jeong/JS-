@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+</head>
+<body>
+	<script>
+		// BFS 기초
+		function solution() {
+
+			const queue = [1];
+			const answer = [];
+
+			while (queue.length) { // queue가 비면 종료
+
+				const v = queue.shift();
+				answer.push(v);
+				for (let nv of [v * 2, v * 2 + 1]) {
+					if (nv > 7) continue;
+					queue.push(nv);
+				}
+
+			}
+
+			return answer;
+			
+		}
+		
+		console.log(solution());
+		
+			
+	
+	</script>
+</body>
+</html>
