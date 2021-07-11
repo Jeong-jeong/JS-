@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+</head>
+<body>
+	<script>
+		// [프로그래머스] 에상 대진표
+		function solution(n,a,b) {
+
+			let turn = 0;
+			
+			while (a !== b) {
+					turn++;
+					a = Math.ceil(a / 2);
+					b = Math.ceil(b / 2);
+			}
+			
+			return turn;
+			
+		}
+	
+		const n = 8;
+		const a = 4;
+		const b = 7;
+		
+		console.log(solution(n,a,b));
+		
+			
+	
+	</script>
+</body>
+</html>
