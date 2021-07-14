@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+</head>
+<body>
+	<script>
+		// [프로그래머스] 파일명 정렬
+		function solution(files) {
+    
+			files.sort((a, b) => {
+					
+					const [aHead, aNum] = divided(a);
+					const [bHead, bNum] = divided(b);
+					
+					if (aHead > bHead) { 
+							return 1;
+					} else if (aHead < bHead) {
+							return -1;
+					} else return aNum - bNum; // 숫자비교
+					
+			})
+			
+			return files;
+			
+	}
+	
+	const divided = (str) => { // [head, number] 리턴
+			
+			let numStart = str.split('').findIndex(e => Number.isInteger(+e) && e !== ' ');
+			let numEnd;
+			
+			for (let i = numStart; i < str.length; i++) {
+					if (Number.isInteger(+str[i])) {
+							numEnd = i + 1;
+					} else break;
+			}
+			
+			
+			const H = str.slice(0, numStart).toLowerCase();
+			const N = +str.slice(numStart, numEnd); // 숫자로 변환
+			
+			return [H, N];
+	}
+	
+		const files = ["F-5 Freedom Fighter", "B-50 Superfortress", "A-10 Thunderbolt II", "F-14 Tomcat"];
+		
+		console.log(solution(files));
+		
+			
+	
+	</script>
+</body>
+</html>
